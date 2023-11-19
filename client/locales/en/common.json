@@ -1,0 +1,46 @@
+{
+  "header": {
+    "navigation": {
+      "discounts": "Discounts",
+      "shops": "Shops",
+      "about": "About",
+      "contacts": "Contacts"
+    },
+    "user": {
+      "account": "Account",
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "profile": "Profile",
+      "logout": "Logout"
+    }
+  },
+  "auth": {
+    "username": "Username",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phoneNumber": "Phone number",
+    "password": "Password",
+    "sendBtn": "Send"
+  },
+  "titles": {
+    "homePageTitle": "TopAksiya - find cheaper!"
+  },
+  "pages": {
+    "about": {
+      "title": "About us",
+      "content": "We are very glad to see you on our useful website Promotions and Discounts of Uzbekistan! Here is collected all the information about the sale of the maximum number of retail chains, complexes and single stores in our country. Up-to-date information about discounts and promotions of all stores will help you inexpensively purchase products of all brands that exist today. Saving significant funds on daily purchases, you have a unique opportunity to purchase an unplanned thing, as well as significantly improve your financial situation. Explore discounts online in stores and be the first among the shopping gurus!"
+    },
+    "profile": {
+      "title": "Account settings",
+      "favorites": "Favorites",
+      "myAds": "My announcements",
+      "update": "Update",
+      "changesSaved": "Changes saved!"
+    }
+  },
+  "backToMain": "Main page",
+  "pageNotFound": "Error - 404! Page not found!",
+  "searchPlaceholder": "Discounts and shops...",
+  "footerText": "TopAksiya. All rights reserved."
+}

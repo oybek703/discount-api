@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    image: chegirma-api
+    container_name: chegirma-api
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    env_file:
+      - .development.env
+    volumes:
+       - .:/usr/app
+       - /usr/app/node_modules
+    working_dir: /usr/app
+    ports:
+       - "${PORT}:${PORT}"
+    command: npm run start:dev
+
+  postgres:
+    image: postgres
+    restart: always
+    env_file:
+      - .development.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+volumes:
+  pg_data:
