@@ -24,5 +24,5 @@ export enum LocalizationKeys {
 
 export enum BaseColors {
   primary = '#397E74',
-  secondary = 'rgba(0,192,77,0.96)'
+  secondary = 'rgba(55,129,226,0.96)'
 }
