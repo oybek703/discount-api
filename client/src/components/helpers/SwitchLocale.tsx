@@ -18,6 +18,7 @@ const ChipLabel = ({
       sx={{
         color: '#333',
         cursor: 'pointer',
+        borderRadius: '50%',
         backgroundColor: theme =>
           locale === currentLocale ? theme.palette.secondary.main : 'white'
       }}
