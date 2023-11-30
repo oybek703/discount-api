@@ -1,12 +1,12 @@
 'use client'
-import { AppBar, Button, Grid, Typography } from '@mui/material'
+import { AppBar, Button, Grid } from '@mui/material'
 import React, { FC } from 'react'
 import Logo from '@/components/helpers/Logo'
-import Link from 'next/link'
-import { AppRoutePaths } from '@/common/constants'
-import { usePathname } from 'next/navigation'
-import SearchComponent from '@/components/helpers/Search'
+import { AppRoutePaths, AvailableLocales, LocalizationKeys } from '@/common/constants'
 import AccountBtn from '@/components/helpers/AccountBtn'
+import { Link, usePathname } from '@/navigation'
+import { useTranslations } from 'next-intl'
+import SwitchLocale from '@/components/helpers/SwitchLocale'
 
 interface INavLinkProps {
   appRoutePath: AppRoutePaths
@@ -40,6 +40,7 @@ const NavLink: FC<INavLinkProps> = ({ appRoutePath, title }) => {
 }
 
 const NavigationLinks = () => {
+  const t = useTranslations()
   return (
     <Grid
       sx={{ display: 'flex', flexDirection: 'row' }}
@@ -47,17 +48,17 @@ const NavigationLinks = () => {
       component="ul"
       columnGap={'10px'}
     >
-      <NavLink appRoutePath={AppRoutePaths.home} title="Bosh sahifa" />
-      <NavLink appRoutePath={AppRoutePaths.discounts} title="Chegirmalar" />
-      <NavLink appRoutePath={AppRoutePaths.about} title="Biz haqimizda" />
-      <NavLink appRoutePath={AppRoutePaths.contact} title="Kontakt" />
+      <NavLink appRoutePath={AppRoutePaths.home} title={t(LocalizationKeys.mainLink)} />
+      <NavLink appRoutePath={AppRoutePaths.discounts} title={t(LocalizationKeys.discountsLink)} />
+      <NavLink appRoutePath={AppRoutePaths.about} title={t(LocalizationKeys.aboutLink)} />
+      <NavLink appRoutePath={AppRoutePaths.contacts} title={t(LocalizationKeys.contactsLink)} />
     </Grid>
   )
 }
 
-const Header = () => {
+const Header = ({ currentLocale }: { currentLocale: AvailableLocales }) => {
   return (
-    <AppBar position="sticky" component="header" sx={{ paddingX: '20px' }}>
+    <AppBar position="sticky" component="header" sx={{ paddingLeft: '20px' }}>
       <Grid container sx={{ minHeight: '50px', alignItems: 'center' }}>
         <Grid item xs={2}>
           <Logo />
@@ -65,8 +66,11 @@ const Header = () => {
         <Grid item xs={6}>
           <NavigationLinks />
         </Grid>
-        <Grid item xs={4} justifyContent="flex-end" sx={{ textAlign: 'right' }}>
-          <AccountBtn />
+        <Grid item xs={4}>
+          <Grid container justifyContent="space-around" alignItems="center">
+            <SwitchLocale currentLocale={currentLocale} />
+            <AccountBtn />
+          </Grid>
         </Grid>
       </Grid>
     </AppBar>

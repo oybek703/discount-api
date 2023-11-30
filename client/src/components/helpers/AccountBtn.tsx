@@ -7,6 +7,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import { Fragment } from 'react'
+import { useTranslations } from 'next-intl'
+import { LocalizationKeys } from '@/common/constants'
 
 export default function AccountBtn() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -17,7 +19,7 @@ export default function AccountBtn() {
   const handleClose = () => {
     setAnchorEl(null)
   }
-
+  const t = useTranslations()
   return (
     <Fragment>
       <Button
@@ -39,7 +41,7 @@ export default function AccountBtn() {
           }
         }}
       >
-        Akkaunt
+        {t(LocalizationKeys.userAccountBtn)}
       </Button>
       <Menu
         id="basic-menu"
@@ -50,9 +52,8 @@ export default function AccountBtn() {
           'aria-labelledby': 'basic-button'
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>{t(LocalizationKeys.profileBtn)}</MenuItem>
+        <MenuItem onClick={handleClose}>{t(LocalizationKeys.logoutBtn)}</MenuItem>
       </Menu>
     </Fragment>
   )

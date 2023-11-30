@@ -1,8 +1,8 @@
 {
   "header": {
     "navigation": {
+      "main": "Bosh sahifa",
       "discounts": "Chegirmalar",
-      "shops": "Do'konlar",
       "about": "Biz haqimizda",
       "contacts": "Bog'lanish"
     },
