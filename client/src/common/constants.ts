@@ -18,5 +18,11 @@ export enum LocalizationKeys {
   contactsLink = 'header.navigation.contacts',
   userAccountBtn = 'header.user.account',
   profileBtn = 'header.user.profile',
-  logoutBtn = 'header.user.logout'
+  logoutBtn = 'header.user.logout',
+  footerText = 'footerText'
+}
+
+export enum BaseColors {
+  primary = '#397E74',
+  secondary = 'rgba(0,192,77,0.96)'
 }
