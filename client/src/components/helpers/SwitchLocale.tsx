@@ -16,11 +16,11 @@ const ChipLabel = ({
   return (
     <Chip
       sx={{
-        color: '#333',
         cursor: 'pointer',
         borderRadius: '50%',
         backgroundColor: theme =>
-          locale === currentLocale ? theme.palette.secondary.main : 'white'
+          locale === currentLocale ? theme.palette.secondary.main : 'white',
+        color: theme => (locale === currentLocale ? 'white' : 'initial')
       }}
       size="small"
       label={locale}
