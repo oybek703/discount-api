@@ -7,10 +7,11 @@ import Header from '@/components/layout/Header'
 import Main from '@/components/layout/Main'
 import Footer from '@/components/layout/Footer'
 import { ILocalParams } from '@/interfaces/i18n.interfaces'
-import { AvailableLocales } from '@/common/constants'
+import { AvailableLocales, BaseColors } from '@/common/constants'
 import { locales } from '@/navigation'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
+import NextTopLoader from 'nextjs-toploader'
 
 export const metadata: Metadata = {
   title: 'TopAksiya',
@@ -41,6 +42,17 @@ export default async function RootLayout({
         <body>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider theme={customTheme}>
+              <NextTopLoader
+                color={BaseColors.secondary}
+                initialPosition={0.08}
+                crawlSpeed={200}
+                height={4}
+                crawl={true}
+                showSpinner={false}
+                easing="ease"
+                speed={400}
+                shadow={`0 0 10px ${BaseColors.secondary},0 0 5px ${BaseColors.secondary}`}
+              />
               <Grid id="container">
                 <Header currentLocale={locale} />
                 <Main>{children}</Main>

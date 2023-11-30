@@ -1,13 +1,14 @@
 'use client'
 import { createTheme } from '@mui/material'
+import { BaseColors } from '@/common/constants'
 
 export const customTheme = createTheme({
   palette: {
     primary: {
-      main: '#397E74'
+      main: BaseColors.primary
     },
     secondary: {
-      main: 'rgba(0,192,77,0.96)'
+      main: BaseColors.secondary
     }
   },
   typography: {
