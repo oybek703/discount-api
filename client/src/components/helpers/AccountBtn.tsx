@@ -35,7 +35,7 @@ export default function AccountBtn() {
           border: '1px solid #fff',
           borderRadius: '5px',
           color: 'white',
-          padding: '3px 12px',
+          padding: '2px 10px',
           '&:hover': {
             border: '1px solid #fff'
           }

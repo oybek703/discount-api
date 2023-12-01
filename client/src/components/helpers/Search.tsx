@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
-import { alpha, styled } from '@mui/material/styles'
-import Box from '@mui/material/Box'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
-import { IconButton, InputAdornment } from '@mui/material'
+import { styled, alpha } from '@mui/material/styles'
+import { useTranslations } from 'next-intl'
+import { LocalizationKeys } from '@/common/constants'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   color: 'black',
-  marginX: '10px',
   backgroundColor: alpha(theme.palette.common.white, 0.5),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 1)
   },
-  width: '100%'
+  marginLeft: 0,
+  width: '100%',
+  maxHeight: '40px',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto'
+  }
 }))
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -28,16 +32,23 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
   '& .MuiInputBase-input': {
-    padding: theme.spacing(0.7, 1, 0.7, 0),
+    padding: theme.spacing(0.5, 0.5, 0.5, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(2.5)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(2)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: '20ch',
       '&:focus': {
         width: '25ch'
+      }
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '15ch',
+      '&:focus': {
+        width: '16ch'
       }
     },
     [theme.breakpoints.up('lg')]: {
@@ -49,44 +60,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }
 }))
 
-const ClearAdornment = ({ handleClick }: { handleClick: () => void }) => {
+const SearchComponent = () => {
+  const t = useTranslations()
   return (
-    <InputAdornment position="end">
-      <IconButton
-        onClick={handleClick}
-        sx={{
-          backgroundColor: 'gray !important',
-          color: 'white !important',
-          width: '15px',
-          height: '15px',
-          marginRight: '10px'
-        }}
-        size="small"
-      >
-        &times;
-      </IconButton>
-    </InputAdornment>
+    <Search>
+      <SearchIconWrapper>
+        <SearchIcon fontSize="small" />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder={t(LocalizationKeys.searchPlaceholder)}
+        inputProps={{ 'aria-label': 'search' }}
+      />
+    </Search>
   )
 }
 
-export default function SearchComponent() {
-  const [query, setQuery] = useState<string>('')
-  const clearQuery = () => setQuery('')
-  return (
-    <Box sx={{ flexGrow: 0 }}>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          size="small"
-          endAdornment={query.length ? <ClearAdornment handleClick={clearQuery} /> : undefined}
-          placeholder={'Chegirmalar, mahsulot nomi...'}
-          inputProps={{ 'aria-label': 'search' }}
-        />
-      </Search>
-    </Box>
-  )
-}
+export default SearchComponent

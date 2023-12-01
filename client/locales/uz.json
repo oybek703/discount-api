@@ -1,10 +1,9 @@
 {
   "header": {
     "navigation": {
-      "main": "Bosh sahifa",
       "discounts": "Chegirmalar",
-      "about": "Biz haqimizda",
-      "contacts": "Bog'lanish"
+      "shops": "Do'konlar",
+      "contacts": "Kontakt"
     },
     "user": {
       "account": "Akkaunt",
