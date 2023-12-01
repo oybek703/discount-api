@@ -12,6 +12,7 @@ import { locales } from '@/navigation'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import NextTopLoader from 'nextjs-toploader'
+import { AppContextProvider } from '@/components/context/AppContext'
 
 export const metadata: Metadata = {
   title: 'TopAksiya',
@@ -40,26 +41,28 @@ export default async function RootLayout({
       <link rel="icon" href="/public/favicon.ico" />
       <html lang={locale}>
         <body>
-          <NextIntlClientProvider messages={messages}>
-            <ThemeProvider theme={customTheme}>
-              <NextTopLoader
-                color={BaseColors.secondary}
-                initialPosition={0.08}
-                crawlSpeed={200}
-                height={4}
-                crawl={true}
-                showSpinner={false}
-                easing="ease"
-                speed={400}
-                shadow={`0 0 10px ${BaseColors.secondary},0 0 5px ${BaseColors.secondary}`}
-              />
-              <Grid id="container">
-                <Header currentLocale={locale} />
-                <Main>{children}</Main>
-                <Footer />
-              </Grid>
-            </ThemeProvider>
-          </NextIntlClientProvider>
+          <AppContextProvider locale={locale}>
+            <NextIntlClientProvider messages={messages}>
+              <ThemeProvider theme={customTheme}>
+                <NextTopLoader
+                  color={BaseColors.secondary}
+                  initialPosition={0.08}
+                  crawlSpeed={200}
+                  height={4}
+                  crawl={true}
+                  showSpinner={false}
+                  easing="ease"
+                  speed={400}
+                  shadow={`0 0 10px ${BaseColors.secondary},0 0 5px ${BaseColors.secondary}`}
+                />
+                <Grid id="container">
+                  <Header />
+                  <Main>{children}</Main>
+                  <Footer />
+                </Grid>
+              </ThemeProvider>
+            </NextIntlClientProvider>
+          </AppContextProvider>
         </body>
       </html>
     </Fragment>

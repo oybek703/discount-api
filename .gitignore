@@ -45,7 +45,7 @@ api/data
 
 
 # CLIENT IGNORED FILES
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# See https://help.github.com/articles/ignoring-files/ for more shops ignoring files.
 
 # dependencies
 client/node_modules

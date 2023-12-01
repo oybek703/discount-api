@@ -1,9 +1,8 @@
 {
   "header": {
     "navigation": {
-      "main": "Home",
       "discounts": "Discounts",
-      "about": "About",
+      "shops": "Shops",
       "contacts": "Contacts"
     },
     "user": {

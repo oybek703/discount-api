@@ -13,7 +13,9 @@ const Footer = () => {
       justifyContent="center"
       sx={{ padding: '10px 0', backgroundColor: '#ccc', color: '#1b1b1b' }}
     >
-      <Typography align="center">©2023 topaksiya.uz - {t(LocalizationKeys.footerText)}</Typography>
+      <Typography align="center" variant="subtitle2">
+        ©2023 TOPAKSIYA - {t(LocalizationKeys.footerText)}
+      </Typography>
     </Grid>
   )
 }

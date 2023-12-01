@@ -1,9 +1,8 @@
 {
   "header": {
     "navigation": {
-      "main": "Главная",
       "discounts": "Скидки",
-      "about": "О нас",
+      "shops": "Магазины",
       "contacts": "Контакты"
     },
     "user": {

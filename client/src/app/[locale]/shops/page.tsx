@@ -6,7 +6,7 @@ const Page = () => {
   const t = useTranslations()
   return (
     <>
-      <h1>{t(LocalizationKeys.contactsLink)}</h1>
+      <h1>{t(LocalizationKeys.shopsLink)}</h1>
     </>
   )
 }

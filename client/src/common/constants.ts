@@ -1,7 +1,7 @@
 export enum AppRoutePaths {
   home = '/',
   discounts = '/discounts',
-  about = '/about',
+  shops = '/shops',
   contacts = '/contacts'
 }
 
@@ -12,14 +12,15 @@ export enum AvailableLocales {
 }
 
 export enum LocalizationKeys {
-  mainLink = 'header.navigation.main',
   discountsLink = 'header.navigation.discounts',
-  aboutLink = 'header.navigation.about',
+  shopsLink = 'header.navigation.shops',
   contactsLink = 'header.navigation.contacts',
   userAccountBtn = 'header.user.account',
   profileBtn = 'header.user.profile',
   logoutBtn = 'header.user.logout',
-  footerText = 'footerText'
+  footerText = 'footerText',
+  homePageTitle = 'titles.homePageTitle',
+  searchPlaceholder = 'searchPlaceholder'
 }
 
 export enum BaseColors {

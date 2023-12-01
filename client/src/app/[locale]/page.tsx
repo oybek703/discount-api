@@ -7,7 +7,7 @@ export default function Home() {
   const t = useTranslations()
   return (
     <Grid>
-      <h1>{t(LocalizationKeys.mainLink)}</h1>
+      <h1>{t(LocalizationKeys.homePageTitle)}</h1>
     </Grid>
   )
 }
