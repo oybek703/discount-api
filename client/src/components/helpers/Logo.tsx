@@ -18,7 +18,7 @@ const Logo = () => {
       sx={{ alignItems: 'center' }}
       href={AppRoutePaths.home}
     >
-      <Image src={'/logo.svg'} alt={'Page logo'} width={100} height={40} priority />
+      <Image src={'/logo.svg'} alt={'Page logo'} width={90} height={40} priority />
     </Grid>
   )
 }

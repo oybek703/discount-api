@@ -79,7 +79,7 @@ const Header = () => {
 
   return (
     <Fragment>
-      <AppBar position="sticky" component="header" sx={{ px: '20px' }}>
+      <AppBar position="sticky" component="header" sx={{ pr: '20px', pl: '10px' }}>
         <Grid
           container
           sx={{ minHeight: '50px', alignItems: 'center', justifyContent: 'space-between' }}
@@ -90,11 +90,11 @@ const Header = () => {
           {maxWidth1200 ? (
             <Fragment>
               <Grid item xs={9}>
-                <Grid container columnGap="20px" alignItems="center" justifyContent="flex-end">
-                  <Grid item>
+                <Grid container columnGap="5px" alignItems="center" justifyContent="flex-end">
+                  <Grid item xs={10}>
                     <SearchComponent />
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={1} justifyItems="flex-end">
                     <IconButton onClick={() => setDrawer(true)}>
                       <MenuIcon
                         fontSize="medium"
