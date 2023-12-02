@@ -90,7 +90,7 @@ const Header = () => {
           {maxWidth1200 ? (
             <Fragment>
               <Grid item xs={9}>
-                <Grid container columnGap="10px" alignItems="center" justifyContent="flex-end">
+                <Grid container columnGap="5px" alignItems="center" justifyContent="flex-end">
                   <Grid item xs={10}>
                     <SearchComponent />
                   </Grid>

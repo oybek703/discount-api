@@ -11,10 +11,10 @@ const Footer = () => {
       container
       component="footer"
       justifyContent="center"
-      sx={{ padding: '10px 0', backgroundColor: '#ccc', color: '#1b1b1b' }}
+      sx={{ padding: '5px 0', backgroundColor: '#ccc', color: '#1b1b1b' }}
     >
       <Typography align="center" variant="subtitle2">
-        ©2023 TOPAKSIYA - {t(LocalizationKeys.footerText)}
+        TOPAKSIYA - 2023 <br /> {t(LocalizationKeys.footerText)}
       </Typography>
     </Grid>
   )
