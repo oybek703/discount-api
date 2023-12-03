@@ -2,22 +2,23 @@ import * as React from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import ExpandLess from '@mui/icons-material/ExpandLess'
-import ExpandMore from '@mui/icons-material/ExpandMore'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { useTranslations } from 'next-intl'
-import { LocalizationKeys } from '@/common/constants'
+import { AppRoutePaths, LocalizationKeys } from '@/common/constants'
+import { Link } from '@/navigation'
+import { AppContext } from '@/components/context/AppContext'
 
 export default function AccountBtn() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const { drawer, setDrawer } = useContext(AppContext)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget)
-  }
   const handleClose = () => {
     setAnchorEl(null)
+    if (drawer) setDrawer(false)
   }
   const t = useTranslations()
   return (
@@ -52,8 +53,12 @@ export default function AccountBtn() {
           'aria-labelledby': 'basic-button'
         }}
       >
-        <MenuItem onClick={handleClose}>{t(LocalizationKeys.profileBtn)}</MenuItem>
-        <MenuItem onClick={handleClose}>{t(LocalizationKeys.logoutBtn)}</MenuItem>
+        <MenuItem component={Link} href={AppRoutePaths.login} onClick={handleClose}>
+          {t(LocalizationKeys.login)}
+        </MenuItem>
+        <MenuItem component={Link} href={AppRoutePaths.register} onClick={handleClose}>
+          {t(LocalizationKeys.register)}
+        </MenuItem>
       </Menu>
     </Fragment>
   )

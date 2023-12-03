@@ -2,7 +2,9 @@ export enum AppRoutePaths {
   home = '/',
   discounts = '/discounts',
   shops = '/shops',
-  contacts = '/contacts'
+  contacts = '/contacts',
+  login = '/login',
+  register = '/register'
 }
 
 export enum AvailableLocales {
@@ -18,6 +20,15 @@ export enum LocalizationKeys {
   userAccountBtn = 'header.user.account',
   profileBtn = 'header.user.profile',
   logoutBtn = 'header.user.logout',
+  firstName = 'auth.firstName',
+  lastName = 'auth.lastName',
+  email = 'auth.email',
+  password = 'auth.password',
+  sendBtn = 'auth.sendBtn',
+  doNotHaveAccount = 'auth.doNotHaveAccount',
+  alreadyHaveAccount = 'auth.alreadyHaveAccount',
+  login = 'header.user.login',
+  register = 'header.user.register',
   footerText = 'footerText',
   homePageTitle = 'titles.homePageTitle',
   searchPlaceholder = 'searchPlaceholder',

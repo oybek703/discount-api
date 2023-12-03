@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: ILocalParams }): Pr
   const { locale } = params
   const t = await getTranslations({ locale })
   return {
-    title: t(LocalizationKeys.contactsLink)
+    title: t(LocalizationKeys.register)
   }
 }
 
