@@ -7,16 +7,22 @@ import Header from '@/components/layout/Header'
 import Main from '@/components/layout/Main'
 import Footer from '@/components/layout/Footer'
 import { ILocalParams } from '@/interfaces/i18n.interfaces'
-import { AvailableLocales, BaseColors } from '@/common/constants'
+import { AvailableLocales, BaseColors, LocalizationKeys } from '@/common/constants'
 import { locales } from '@/navigation'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import NextTopLoader from 'nextjs-toploader'
 import { AppContextProvider } from '@/components/context/AppContext'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'TopAksiya',
-  description: "Aksiya, chegirma hamda do'konlar katalogi"
+export async function generateMetadata({ params }: { params: ILocalParams }): Promise<Metadata> {
+  const { locale } = params
+  const t = await getTranslations({ locale })
+  return {
+    title: 'TopAksiya',
+    description: t(LocalizationKeys.footerText),
+    keywords: t(LocalizationKeys.mainPageKeywords)
+  }
 }
 
 export default async function RootLayout({

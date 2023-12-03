@@ -20,7 +20,8 @@ export enum LocalizationKeys {
   logoutBtn = 'header.user.logout',
   footerText = 'footerText',
   homePageTitle = 'titles.homePageTitle',
-  searchPlaceholder = 'searchPlaceholder'
+  searchPlaceholder = 'searchPlaceholder',
+  mainPageKeywords = 'mainPageKeywords'
 }
 
 export enum BaseColors {
