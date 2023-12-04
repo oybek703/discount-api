@@ -15,7 +15,7 @@ import { Link } from '@/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ILoginAuth } from '@/interfaces/auth.interfaces'
 import ErrorHelperText from '@/components/helpers/AuthErrorHelper'
-import { IconButton, InputAdornment } from '@mui/material'
+import { IconButton } from '@mui/material'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
 import axiosInstance from '@/common/axios-utils'
@@ -35,15 +35,19 @@ const Page = () => {
 
   const onSubmit: SubmitHandler<ILoginAuth> = async data => {
     try {
-      await signIn('credentials', {
-        callbackUrl: '/',
-        redirect: true,
+      const { data: tokenData } = await axiosInstance.post(`/auth/login`, {
         username: data.username,
         password: data.password
       })
+      await signIn('credentials', {
+        callbackUrl: '/',
+        redirect: true,
+        token: tokenData.token,
+        username: data.username
+      })
       setSnackbar({ open: false })
     } catch (e: unknown) {
-      console.log(e)
+      console.log(e instanceof AxiosError)
       if (e instanceof AxiosError)
         setSnackbar({ open: true, message: e.response?.data?.message, severity: 'error' })
     }
@@ -89,19 +93,17 @@ const Page = () => {
             autoComplete="current-password"
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => setShowPassword(!showPassword)}
-                    edge="end"
-                  >
-                    {showPassword ? (
-                      <VisibilityOff fontSize="small" />
-                    ) : (
-                      <Visibility fontSize="small" />
-                    )}
-                  </IconButton>
-                </InputAdornment>
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => setShowPassword(!showPassword)}
+                  edge="end"
+                >
+                  {showPassword ? (
+                    <VisibilityOff fontSize="small" />
+                  ) : (
+                    <Visibility fontSize="small" />
+                  )}
+                </IconButton>
               )
             }}
             {...register('password', { minLength: 6, required: true })}

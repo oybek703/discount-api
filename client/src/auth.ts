@@ -12,16 +12,13 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials, req): Promise<any> {
         const username = credentials?.username
+        // @ts-ignore
+        const token = credentials?.token
         try {
-          const password = credentials?.password
-          const { data: tokenData } = await axiosInstance.post(`/auth/login`, {
-            username,
-            password
-          })
           const { data: userData } = await axiosInstance.get<IUser>(`/users/${username}`, {
-            headers: { Authorization: `Bearer ${tokenData.token}` }
+            headers: { Authorization: `Bearer ${token}` }
           })
-          return { ...userData, token: tokenData.token }
+          return { ...userData, token }
         } catch (e) {
           console.log('Error while auth: ', e)
           return Promise.reject(e)

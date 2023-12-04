@@ -37,11 +37,15 @@ const Page = () => {
   const onSubmit: SubmitHandler<IRegisterAuth> = async formData => {
     try {
       const { data } = await axiosInstance.post(`/auth/register`, formData)
+      const { data: tokenData } = await axiosInstance.post(`/auth/login`, {
+        username: data.username,
+        password: formData.password
+      })
       await signIn('credentials', {
         callbackUrl: '/',
         redirect: true,
-        username: data.username,
-        password: formData.password
+        token: tokenData.token,
+        username: data.username
       })
       setSnackbar({ open: false })
     } catch (e: unknown) {

@@ -9,8 +9,11 @@ import { useTranslations } from 'next-intl'
 import { AppRoutePaths, LocalizationKeys } from '@/common/constants'
 import { Link } from '@/navigation'
 import { AppContext } from '@/components/context/AppContext'
+import { signOut, useSession } from 'next-auth/react'
 
 export default function AccountBtn() {
+  const session = useSession()
+  const t = useTranslations()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const { drawer, setDrawer } = useContext(AppContext)
   const open = Boolean(anchorEl)
@@ -20,7 +23,9 @@ export default function AccountBtn() {
     setAnchorEl(null)
     if (drawer) setDrawer(false)
   }
-  const t = useTranslations()
+  const handleLogout = () => signOut()
+  // @ts-ignore
+  const username = session.data?.user?.username
   return (
     <Fragment>
       <Button
@@ -42,7 +47,7 @@ export default function AccountBtn() {
           }
         }}
       >
-        {t(LocalizationKeys.userAccountBtn)}
+        {username || t(LocalizationKeys.userAccountBtn)}
       </Button>
       <Menu
         id="basic-menu"
@@ -53,12 +58,23 @@ export default function AccountBtn() {
           'aria-labelledby': 'basic-button'
         }}
       >
-        <MenuItem component={Link} href={AppRoutePaths.login} onClick={handleClose}>
-          {t(LocalizationKeys.login)}
-        </MenuItem>
-        <MenuItem component={Link} href={AppRoutePaths.register} onClick={handleClose}>
-          {t(LocalizationKeys.register)}
-        </MenuItem>
+        {session.status === 'authenticated' ? (
+          <div>
+            <MenuItem component={Link} href={AppRoutePaths.profile} onClick={handleClose}>
+              {t(LocalizationKeys.profileBtn)}
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>{t(LocalizationKeys.logoutBtn)}</MenuItem>
+          </div>
+        ) : (
+          <div>
+            <MenuItem component={Link} href={AppRoutePaths.login} onClick={handleClose}>
+              {t(LocalizationKeys.login)}
+            </MenuItem>
+            <MenuItem component={Link} href={AppRoutePaths.register} onClick={handleClose}>
+              {t(LocalizationKeys.register)}
+            </MenuItem>
+          </div>
+        )}
       </Menu>
     </Fragment>
   )

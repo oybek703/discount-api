@@ -11,12 +11,12 @@ export async function generateMetadata({ params }: { params: ILocalParams }): Pr
   const { locale } = params
   const t = await getTranslations({ locale })
   return {
-    title: t(LocalizationKeys.login)
+    title: t(LocalizationKeys.profileBtn)
   }
 }
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions)
-  if (session) redirect(AppRoutePaths.home)
+  if (!session) redirect(AppRoutePaths.login)
   return <Fragment>{children}</Fragment>
 }

@@ -4,7 +4,8 @@ export enum AppRoutePaths {
   shops = '/shops',
   contacts = '/contacts',
   login = '/login',
-  register = '/register'
+  register = '/register',
+  profile = '/profile'
 }
 
 export enum AvailableLocales {

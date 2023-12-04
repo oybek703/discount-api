@@ -4,10 +4,20 @@ import { locales } from './navigation'
 
 export default createMiddleware({
   locales,
-  defaultLocale: AvailableLocales.ru
+  defaultLocale: AvailableLocales.ru,
+  localePrefix: 'as-needed'
 })
 
 export const config = {
   // Match only internationalized pathNames
-  matcher: ['/', '/(ru|uz|en)/:path*']
+  // Matcher entries are linked with a logical "or", therefore
+  // if one of them matches, the middleware will be invoked.
+  matcher: [
+    // Match all pathnames except for
+    // - … if they start with `/api`, `/_next` or `/_vercel`
+    // - … the ones containing a dot (e.g. `favicon.ico`)
+    '/((?!api|_next|_vercel|.*\\..*).*)',
+    // Match all pathnames within `/users`, optionally with a locale prefix
+    '/([\\w-]+)?/users/(.+)'
+  ]
 }

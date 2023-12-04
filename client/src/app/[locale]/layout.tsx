@@ -15,6 +15,7 @@ import NextTopLoader from 'nextjs-toploader'
 import { AppContextProvider } from '@/components/context/AppContext'
 import { getTranslations } from 'next-intl/server'
 import NextAuthSessionProvider from '@/components/providers/NextAuthProvider'
+import MessageSnackbar from '@/components/helpers/MessageSnackbar'
 
 export async function generateMetadata({ params }: { params: ILocalParams }): Promise<Metadata> {
   const { locale } = params
@@ -68,6 +69,7 @@ export default async function RootLayout({
                     <Main>{children}</Main>
                     <Footer />
                   </Grid>
+                  <MessageSnackbar />
                 </ThemeProvider>
               </NextIntlClientProvider>
             </AppContextProvider>
