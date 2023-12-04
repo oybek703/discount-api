@@ -18,6 +18,7 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { IRegisterAuth } from '@/interfaces/auth.interfaces'
 import ErrorHelperText from '@/components/helpers/AuthErrorHelper'
+import axiosInstance from '@/common/axios-utils'
 
 const Page = () => {
   const t = useTranslations()
@@ -28,8 +29,9 @@ const Page = () => {
     formState: { errors }
   } = useForm<IRegisterAuth>()
 
-  const onSubmit: SubmitHandler<IRegisterAuth> = async data => {
-    console.log('Register data: ', data)
+  const onSubmit: SubmitHandler<IRegisterAuth> = async formData => {
+    const { data } = await axiosInstance.post(`http://localhost:8001/users`, formData)
+    console.log(data)
   }
   return (
     <Container maxWidth="xs">

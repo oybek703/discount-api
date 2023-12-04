@@ -3,8 +3,8 @@ version: '3'
 services:
   api:
     build: .
-    image: chegirma-api
-    container_name: chegirma-api
+    image: discount-api
+    container_name: discount-api
     links:
       - mongo
     depends_on:
