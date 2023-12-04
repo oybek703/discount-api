@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { AppRoutePaths, LocalizationKeys } from '@/common/constants'
 import Avatar from '@mui/material/Avatar'
@@ -19,8 +19,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { IRegisterAuth } from '@/interfaces/auth.interfaces'
 import ErrorHelperText from '@/components/helpers/AuthErrorHelper'
 import axiosInstance from '@/common/axios-utils'
+import { AppContext } from '@/components/context/AppContext'
+import { AxiosError } from 'axios'
+import { signIn } from 'next-auth/react'
 
 const Page = () => {
+  const { snackbar, setSnackbar } = useContext(AppContext)
+  const [registerLoading, setRegisterLoading] = useState<boolean>(false)
   const t = useTranslations()
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const {
@@ -30,8 +35,19 @@ const Page = () => {
   } = useForm<IRegisterAuth>()
 
   const onSubmit: SubmitHandler<IRegisterAuth> = async formData => {
-    const { data } = await axiosInstance.post(`http://localhost:8001/users`, formData)
-    console.log(data)
+    try {
+      const { data } = await axiosInstance.post(`/auth/register`, formData)
+      await signIn('credentials', {
+        callbackUrl: '/',
+        redirect: true,
+        username: data.username,
+        password: formData.password
+      })
+      setSnackbar({ open: false })
+    } catch (e: unknown) {
+      if (e instanceof AxiosError)
+        setSnackbar({ open: true, message: e.response?.data?.message, severity: 'error' })
+    }
   }
   return (
     <Container maxWidth="xs">

@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren } from 'react'
 import { Metadata } from 'next'
 import { ILocalParams } from '@/interfaces/i18n.interfaces'
 import { getTranslations } from 'next-intl/server'
 import { LocalizationKeys } from '@/common/constants'
+import React, { Fragment } from 'react'
 
 export async function generateMetadata({ params }: { params: ILocalParams }): Promise<Metadata> {
   const { locale } = params
@@ -12,8 +12,6 @@ export async function generateMetadata({ params }: { params: ILocalParams }): Pr
   }
 }
 
-const Layout: FC<PropsWithChildren> = ({ children }) => {
-  return children
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  return <Fragment>{children}</Fragment>
 }
-
-export default Layout

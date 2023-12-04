@@ -41,4 +41,4 @@ export enum BaseColors {
   secondary = 'rgba(55,129,226,0.96)'
 }
 
-export const API_URL = process.env.API_URL
+export const API_URL = process.env.NEXT_PUBLIC_API_URL

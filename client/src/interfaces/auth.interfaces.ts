@@ -6,3 +6,7 @@ export interface IRegisterAuth {
 }
 
 export interface ILoginAuth extends Omit<IRegisterAuth, 'firstName' | 'lastName'> {}
+
+export interface IUser extends Omit<IRegisterAuth, 'password'> {
+  token: string
+}

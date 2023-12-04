@@ -14,6 +14,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import NextTopLoader from 'nextjs-toploader'
 import { AppContextProvider } from '@/components/context/AppContext'
 import { getTranslations } from 'next-intl/server'
+import NextAuthSessionProvider from '@/components/providers/NextAuthProvider'
 
 export async function generateMetadata({ params }: { params: ILocalParams }): Promise<Metadata> {
   const { locale } = params
@@ -47,28 +48,30 @@ export default async function RootLayout({
       <link rel="icon" href="/public/favicon.ico" />
       <html lang={locale}>
         <body>
-          <AppContextProvider locale={locale}>
-            <NextIntlClientProvider messages={messages}>
-              <ThemeProvider theme={customTheme}>
-                <NextTopLoader
-                  color={BaseColors.secondary}
-                  initialPosition={0.08}
-                  crawlSpeed={200}
-                  height={4}
-                  crawl={true}
-                  showSpinner={false}
-                  easing="ease"
-                  speed={400}
-                  shadow={`0 0 10px ${BaseColors.secondary},0 0 5px ${BaseColors.secondary}`}
-                />
-                <Grid id="container">
-                  <Header />
-                  <Main>{children}</Main>
-                  <Footer />
-                </Grid>
-              </ThemeProvider>
-            </NextIntlClientProvider>
-          </AppContextProvider>
+          <NextAuthSessionProvider>
+            <AppContextProvider locale={locale}>
+              <NextIntlClientProvider messages={messages}>
+                <ThemeProvider theme={customTheme}>
+                  <NextTopLoader
+                    color={BaseColors.secondary}
+                    initialPosition={0.08}
+                    crawlSpeed={200}
+                    height={4}
+                    crawl={true}
+                    showSpinner={false}
+                    easing="ease"
+                    speed={400}
+                    shadow={`0 0 10px ${BaseColors.secondary},0 0 5px ${BaseColors.secondary}`}
+                  />
+                  <Grid id="container">
+                    <Header />
+                    <Main>{children}</Main>
+                    <Footer />
+                  </Grid>
+                </ThemeProvider>
+              </NextIntlClientProvider>
+            </AppContextProvider>
+          </NextAuthSessionProvider>
         </body>
       </html>
     </Fragment>
