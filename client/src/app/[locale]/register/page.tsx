@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { Link } from '@/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { IconButton, InputAdornment } from '@mui/material'
+import { CircularProgress, IconButton, InputAdornment } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { IRegisterAuth } from '@/interfaces/auth.interfaces'
@@ -24,7 +24,7 @@ import { AxiosError } from 'axios'
 import { signIn } from 'next-auth/react'
 
 const Page = () => {
-  const { snackbar, setSnackbar } = useContext(AppContext)
+  const { setSnackbar } = useContext(AppContext)
   const [registerLoading, setRegisterLoading] = useState<boolean>(false)
   const t = useTranslations()
   const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -36,6 +36,7 @@ const Page = () => {
 
   const onSubmit: SubmitHandler<IRegisterAuth> = async formData => {
     try {
+      setRegisterLoading(true)
       const { data } = await axiosInstance.post(`/auth/register`, formData)
       const { data: tokenData } = await axiosInstance.post(`/auth/login`, {
         username: data.username,
@@ -47,10 +48,12 @@ const Page = () => {
         token: tokenData.token,
         username: data.username
       })
+      setRegisterLoading(true)
       setSnackbar({ open: false })
     } catch (e: unknown) {
       if (e instanceof AxiosError)
         setSnackbar({ open: true, message: e.response?.data?.message, severity: 'error' })
+      setRegisterLoading(false)
     }
   }
   return (
@@ -120,19 +123,17 @@ const Page = () => {
                 autoComplete="new-password"
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
-                        {showPassword ? (
-                          <VisibilityOff fontSize="small" />
-                        ) : (
-                          <Visibility fontSize="small" />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                    >
+                      {showPassword ? (
+                        <VisibilityOff fontSize="small" />
+                      ) : (
+                        <Visibility fontSize="small" />
+                      )}
+                    </IconButton>
                   )
                 }}
                 {...register('password', { minLength: 6, required: true })}
@@ -140,8 +141,19 @@ const Page = () => {
               {errors.password && <ErrorHelperText minLength={6} />}
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button
+            disabled={registerLoading}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2, textTransform: 'none', fontSize: '1.1em' }}
+          >
             {t(LocalizationKeys.sendBtn)}
+            {registerLoading && (
+              <>
+                &nbsp; <CircularProgress size={18} color="secondary" />
+              </>
+            )}
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
