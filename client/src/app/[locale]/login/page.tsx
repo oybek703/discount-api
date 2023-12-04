@@ -50,7 +50,6 @@ const Page = () => {
       setLoginLoading(true)
       setSnackbar({ open: false })
     } catch (e: unknown) {
-      console.log(e instanceof AxiosError)
       if (e instanceof AxiosError)
         setSnackbar({ open: true, message: e.response?.data?.message, severity: 'error' })
       setLoginLoading(false)
