@@ -60,7 +60,7 @@ const NavigationLinks = () => {
 
 const Header = () => {
   const [isRenderFinished, setIsRenderFinished] = useState(false)
-  const maxWidth980 = useMediaQuery('(max-width:980px)')
+  const maxWidth1050 = useMediaQuery('(max-width:1050px)')
   const { drawer, setDrawer, appLocale } = useContext(AppContext)
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -89,7 +89,7 @@ const Header = () => {
           <Grid sx={{ flexBasis: '2% !important' }} item xs={2}>
             <Logo />
           </Grid>
-          {maxWidth980 ? (
+          {maxWidth1050 ? (
             <Fragment>
               <Grid item xs={9}>
                 <Grid container columnGap="5px" alignItems="center" justifyContent="flex-end">

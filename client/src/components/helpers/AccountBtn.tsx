@@ -11,6 +11,14 @@ import { Link } from '@/navigation'
 import { AppContext } from '@/components/context/AppContext'
 import { signOut, useSession } from 'next-auth/react'
 
+export const AccountText = () => {
+  const t = useTranslations()
+  const session = useSession()
+  if (!session.data) return <>{t(LocalizationKeys.userAccountBtn)}</>
+  // @ts-ignore
+  return <>{session.data?.user.username}</>
+}
+
 export default function AccountBtn() {
   const session = useSession()
   const t = useTranslations()
@@ -47,7 +55,7 @@ export default function AccountBtn() {
           }
         }}
       >
-        {username || t(LocalizationKeys.userAccountBtn)}
+        <AccountText />
       </Button>
       <Menu
         id="basic-menu"
