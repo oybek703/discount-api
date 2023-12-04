@@ -15,7 +15,7 @@ import { Link } from '@/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ILoginAuth } from '@/interfaces/auth.interfaces'
 import ErrorHelperText from '@/components/helpers/AuthErrorHelper'
-import { IconButton } from '@mui/material'
+import { CircularProgress, IconButton } from '@mui/material'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
 import axiosInstance from '@/common/axios-utils'
@@ -24,8 +24,9 @@ import { AxiosError } from 'axios'
 import { AppContext } from '@/components/context/AppContext'
 
 const Page = () => {
-  const { snackbar, setSnackbar } = useContext(AppContext)
+  const { setSnackbar } = useContext(AppContext)
   const t = useTranslations()
+  const [loginLoading, setLoginLoading] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const {
     register,
@@ -35,6 +36,7 @@ const Page = () => {
 
   const onSubmit: SubmitHandler<ILoginAuth> = async data => {
     try {
+      setLoginLoading(true)
       const { data: tokenData } = await axiosInstance.post(`/auth/login`, {
         username: data.username,
         password: data.password
@@ -45,11 +47,13 @@ const Page = () => {
         token: tokenData.token,
         username: data.username
       })
+      setLoginLoading(true)
       setSnackbar({ open: false })
     } catch (e: unknown) {
       console.log(e instanceof AxiosError)
       if (e instanceof AxiosError)
         setSnackbar({ open: true, message: e.response?.data?.message, severity: 'error' })
+      setLoginLoading(false)
     }
   }
   return (
@@ -109,8 +113,19 @@ const Page = () => {
             {...register('password', { minLength: 6, required: true })}
           />
           {errors.password && <ErrorHelperText minLength={6} />}
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button
+            disabled={loginLoading}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2, textTransform: 'none', fontSize: '1.1em' }}
+          >
             {t(LocalizationKeys.sendBtn)}
+            {loginLoading && (
+              <>
+                &nbsp; <CircularProgress size={18} color="secondary" />
+              </>
+            )}
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
