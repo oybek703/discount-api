@@ -7,8 +7,8 @@
     },
     "user": {
       "account": "Akkaunt",
-      "signIn": "Kirish",
-      "signUp": "Registratsiya",
+      "login": "Kirish",
+      "register": "Registratsiya",
       "profile": "Profil",
       "logout": "Chiqish"
     }
@@ -20,16 +20,15 @@
     "email": "Elektron pochta",
     "phoneNumber": "Telefon raqam",
     "password": "Parol",
-    "sendBtn": "Jo'natish"
+    "sendBtn": "Jo'natish",
+    "doNotHaveAccount": "Akkauntingiz bormi?",
+    "alreadyHaveAccount": "Akkauntingiz yo'qmi?",
+    "minLength": "Minimum {minLength} belgi."
   },
   "titles": {
     "homePageTitle": "TopAksiya - arzonini toping!"
   },
   "pages": {
-    "about": {
-      "title": "Biz haqimizda",
-      "content": "Sizni O'zbekiston aksiyalari va chegirmalari haqida ma'lumot beruvchi saytimizda ko'rganimizdan juda xursandmiz! Bu yerda mamlakatimizdagi savdo tarmoqlari, majmualari va do'konlaridagi aksiya hamda chegirmalar haqida barcha ma'lumotlar to'plangan. Barcha do'konlarning chegirmalari va aksiyalari haqidagi dolzarb ma'lumotlar bugungi kunda mavjud bo'lgan barcha brendlarning mahsulotlarini arzon sotib olishga yordam beradi. Kundalik xaridlarda katta mablag'ni tejash, rejalashtirilmagan narsani sotib olmaslik orqali moliyaviy ahvolingizni sezilarli darajada yaxshilash uchun noyob imkoniyatga egasiz. Do'konlarda mavjud chegirmalarni o'rganing va xarid qilish gurulari orasida birinchi bo'ling!"
-    },
     "profile": {
       "title": "Akkaunt sozlamalari",
       "favorites": "Sevimlilar",

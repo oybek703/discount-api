@@ -14,7 +14,7 @@ rebuild: remove_image
 	docker-compose up --build
 
 remove_image: clean
-	docker rmi chegirma-api
+	docker rmi discount-api
 
 clean:
 	docker-compose down

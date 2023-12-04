@@ -60,7 +60,7 @@ const NavigationLinks = () => {
 
 const Header = () => {
   const [isRenderFinished, setIsRenderFinished] = useState(false)
-  const maxWidth1200 = useMediaQuery('(max-width:1200px)')
+  const maxWidth980 = useMediaQuery('(max-width:980px)')
   const { drawer, setDrawer, appLocale } = useContext(AppContext)
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -74,7 +74,9 @@ const Header = () => {
     setDrawer(open)
   }
   useEffect(() => {
-    setIsRenderFinished(true)
+    setTimeout(function () {
+      setIsRenderFinished(true)
+    }, 500)
   }, [])
 
   return (
@@ -87,7 +89,7 @@ const Header = () => {
           <Grid sx={{ flexBasis: '2% !important' }} item xs={2}>
             <Logo />
           </Grid>
-          {maxWidth1200 ? (
+          {maxWidth980 ? (
             <Fragment>
               <Grid item xs={9}>
                 <Grid container columnGap="5px" alignItems="center" justifyContent="flex-end">
@@ -110,8 +112,8 @@ const Header = () => {
               {isRenderFinished && (
                 <Fragment>
                   <Grid item xs={6}>
-                    <Grid container alignItems="center">
-                      <Grid item xs={6}>
+                    <Grid container alignItems="center" justifyContent="space-between">
+                      <Grid item xs={7}>
                         <Grid
                           container
                           sx={{ display: 'flex', flexDirection: 'row' }}
@@ -121,13 +123,13 @@ const Header = () => {
                           <NavigationLinks />
                         </Grid>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={5}>
                         <SearchComponent />
                       </Grid>
                     </Grid>
                   </Grid>
                   <Grid item xs={4}>
-                    <Grid container justifyContent="right" columnGap="20px" alignItems="center">
+                    <Grid container justifyContent="right" columnGap="10px" alignItems="center">
                       <SwitchLocale />
                       <AccountBtn />
                     </Grid>

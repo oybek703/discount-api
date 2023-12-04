@@ -2,24 +2,30 @@ import * as React from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import ExpandLess from '@mui/icons-material/ExpandLess'
-import ExpandMore from '@mui/icons-material/ExpandMore'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { useTranslations } from 'next-intl'
-import { LocalizationKeys } from '@/common/constants'
+import { AppRoutePaths, LocalizationKeys } from '@/common/constants'
+import { Link } from '@/navigation'
+import { AppContext } from '@/components/context/AppContext'
+import { signOut, useSession } from 'next-auth/react'
 
 export default function AccountBtn() {
+  const session = useSession()
+  const t = useTranslations()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const { drawer, setDrawer } = useContext(AppContext)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget)
-  }
   const handleClose = () => {
     setAnchorEl(null)
+    if (drawer) setDrawer(false)
   }
-  const t = useTranslations()
+  const handleLogout = () => signOut()
+  // @ts-ignore
+  const username = session.data?.user?.username
   return (
     <Fragment>
       <Button
@@ -41,7 +47,7 @@ export default function AccountBtn() {
           }
         }}
       >
-        {t(LocalizationKeys.userAccountBtn)}
+        {username || t(LocalizationKeys.userAccountBtn)}
       </Button>
       <Menu
         id="basic-menu"
@@ -52,8 +58,23 @@ export default function AccountBtn() {
           'aria-labelledby': 'basic-button'
         }}
       >
-        <MenuItem onClick={handleClose}>{t(LocalizationKeys.profileBtn)}</MenuItem>
-        <MenuItem onClick={handleClose}>{t(LocalizationKeys.logoutBtn)}</MenuItem>
+        {session.status === 'authenticated' ? (
+          <div>
+            <MenuItem component={Link} href={AppRoutePaths.profile} onClick={handleClose}>
+              {t(LocalizationKeys.profileBtn)}
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>{t(LocalizationKeys.logoutBtn)}</MenuItem>
+          </div>
+        ) : (
+          <div>
+            <MenuItem component={Link} href={AppRoutePaths.login} onClick={handleClose}>
+              {t(LocalizationKeys.login)}
+            </MenuItem>
+            <MenuItem component={Link} href={AppRoutePaths.register} onClick={handleClose}>
+              {t(LocalizationKeys.register)}
+            </MenuItem>
+          </div>
+        )}
       </Menu>
     </Fragment>
   )

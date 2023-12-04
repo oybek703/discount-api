@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: ILocalParams }): Pr
   }
 }
 
-const DiscountsLayout: FC<PropsWithChildren> = ({ children }) => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
   return children
 }
 
-export default DiscountsLayout
+export default Layout
