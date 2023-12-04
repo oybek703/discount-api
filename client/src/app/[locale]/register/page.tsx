@@ -1,7 +1,7 @@
 'use client'
 import React, { useContext, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { AppRoutePaths, LocalizationKeys } from '@/common/constants'
+import { AppRoutePaths, LocalizationKeys, usernameRegex } from '@/common/constants'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { Link } from '@/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { CircularProgress, IconButton, InputAdornment } from '@mui/material'
+import { CircularProgress, IconButton } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { IRegisterAuth } from '@/interfaces/auth.interfaces'
@@ -108,7 +108,11 @@ const Page = () => {
                 id="username"
                 label={t(LocalizationKeys.username)}
                 autoComplete="username"
-                {...register('username', { minLength: 3, required: true })}
+                {...register('username', {
+                  minLength: 3,
+                  required: true,
+                  pattern: usernameRegex
+                })}
               />
               {errors.username && <ErrorHelperText />}
             </Grid>

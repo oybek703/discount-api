@@ -1,7 +1,7 @@
 'use client'
 import React, { useContext, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { AppRoutePaths, LocalizationKeys } from '@/common/constants'
+import { AppRoutePaths, LocalizationKeys, usernameRegex } from '@/common/constants'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -82,7 +82,7 @@ const Page = () => {
             label={t(LocalizationKeys.username)}
             autoComplete="username"
             autoFocus
-            {...register('username', { minLength: 3, required: true })}
+            {...register('username', { minLength: 3, required: true, pattern: usernameRegex })}
           />
           {errors.username && <ErrorHelperText />}
           <TextField
