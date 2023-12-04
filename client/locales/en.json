@@ -22,7 +22,8 @@
     "password": "Password",
     "sendBtn": "Send",
     "doNotHaveAccount": "Don't have an account?",
-    "alreadyHaveAccount": "Already have an account?"
+    "alreadyHaveAccount": "Already have an account?",
+    "minLength": "Minimum {minLength} characters."
   },
   "titles": {
     "homePageTitle": "TopAksiya - find cheaper!"

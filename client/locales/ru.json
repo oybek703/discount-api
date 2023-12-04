@@ -22,7 +22,8 @@
     "password": "Пароль",
     "sendBtn": "Отправить",
     "doNotHaveAccount": "У вас нет учетной записи?",
-    "alreadyHaveAccount": "У вас уже есть аккаунт?"
+    "alreadyHaveAccount": "У вас уже есть аккаунт?",
+    "minLength": "Минимум {minLength} символов."
   },
   "titles": {
     "homePageTitle": "TopAksiya - найди дешевле!"

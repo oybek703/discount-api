@@ -22,7 +22,8 @@
     "password": "Parol",
     "sendBtn": "Jo'natish",
     "doNotHaveAccount": "Akkauntingiz bormi?",
-    "alreadyHaveAccount": "Akkauntingiz yo'qmi?"
+    "alreadyHaveAccount": "Akkauntingiz yo'qmi?",
+    "minLength": "Minimum {minLength} belgi."
   },
   "titles": {
     "homePageTitle": "TopAksiya - arzonini toping!"
