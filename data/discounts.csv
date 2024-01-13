@@ -1,0 +1,8 @@
+Name,Type,Default value
+id,int,auto
+title,string,required
+description,string,required
+image,string,null
+location,Location,required
+status,active | inactive,required
+user,User,required
