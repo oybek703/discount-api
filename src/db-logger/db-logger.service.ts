@@ -4,12 +4,16 @@ import { Request } from 'express'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { Log } from './schemas/logs.schema'
+import { TgBotLogDto } from './dtos/tg-bot-log.dto'
+import { TgBotLog } from './schemas/tg-bot-log.schema'
 
 @Injectable()
 export class DbLoggerService {
+  private readonly logger = new Logger(DbLoggerService.name)
+
   constructor(
     @InjectModel(Log.name) private logModel: Model<Log>,
-    private readonly logger: Logger
+    @InjectModel(TgBotLog.name) private tgBotLogModel: Model<TgBotLog>
   ) {}
 
   async insertLogToDb(req: Request, body: LogDto) {
@@ -29,6 +33,17 @@ export class DbLoggerService {
       return true
     } catch (e: unknown) {
       this.logger.error(`Error while writing log to db: ${e.toString()}`)
+      return false
+    }
+  }
+
+  async insertTgLogToDb(body: TgBotLogDto) {
+    try {
+      const newTgBotLog = new this.tgBotLogModel(body)
+      await newTgBotLog.save()
+      return true
+    } catch (e: unknown) {
+      this.logger.error(`Error while writing tg-log log to db: ${e.toString()}`)
       return false
     }
   }

@@ -1,6 +1,7 @@
 export enum EnvVariablesKeys {
   port = 'PORT',
   jwtSecret = 'JWT_SECRET',
+  dbName = 'DB_NAME',
   dbURI = 'DB_URI',
   tgBotToken = 'TG_BOT_TOKEN',
   redisHost = 'REDIS_HOST',

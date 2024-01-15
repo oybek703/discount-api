@@ -4,5 +4,6 @@ import { EnvVariablesKeys } from '../common/app.constants'
 
 export const getMongoConfig = (configService: ConfigService): MongooseModuleFactoryOptions => {
   const dbURI = configService.get(EnvVariablesKeys.dbURI)
-  return { uri: dbURI }
+  const dbName = configService.get(EnvVariablesKeys.dbName)
+  return { uri: dbURI, dbName }
 }

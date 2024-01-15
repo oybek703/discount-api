@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import mongoose, { HydratedDocument } from 'mongoose'
 import { User } from '../../users/schemas/user.schema'
-import { Type } from 'class-transformer'
 import { DiscountStatus, ILocation } from '../../interfaces/discount.interfaces'
 
 export type DiscountDocument = HydratedDocument<Discount>
@@ -26,7 +25,6 @@ export class Discount {
   status: DiscountStatus
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
-  @Type(() => User)
   user: User
 
   @Prop({ type: ILocation })

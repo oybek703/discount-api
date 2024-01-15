@@ -15,7 +15,6 @@ export class UserInfoWizard {
   @WizardStep(2)
   @UseInterceptors(TgBotLoggerInterceptor)
   async step2(@Context() ctx: BotContext) {
-    console.log(ctx.message)
     await ctx.reply(ctx.i18n.t(LanguageTexts.chatEndedError))
     await ctx.scene.leave()
   }
