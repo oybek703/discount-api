@@ -1,10 +1,12 @@
-import { Wizard, WizardStep, Context } from 'nestjs-telegraf'
+import { Context, Wizard, WizardStep } from 'nestjs-telegraf'
 import { LanguageTexts, SceneIds } from '../../common/app.constants'
 import { BotContext } from '../../interfaces/tg-bot.interfaces'
-import { UseInterceptors } from '@nestjs/common'
+import { UseFilters, UseInterceptors } from '@nestjs/common'
 import { TgBotLoggerInterceptor } from '../../interceptors/tg-bot-logger.interceptor'
+import { TelegrafExceptionFilter } from '../tg-bot.filter'
 
 @Wizard(SceneIds.getUserInfo)
+@UseFilters(TelegrafExceptionFilter)
 export class UserInfoWizard {
   @WizardStep(1)
   async step1(@Context() ctx: BotContext) {

@@ -1,39 +1,34 @@
-import { Context, Hears, InjectBot, Start, TELEGRAF_STAGE, Update, On } from 'nestjs-telegraf'
+import { Context, Hears, InjectBot, On, Start, Update } from 'nestjs-telegraf'
 import { TgBotService } from './tg-bot.service'
-import { Inject, Logger, OnModuleInit, UseInterceptors } from '@nestjs/common'
-import { Scenes, Telegraf } from 'telegraf'
+import { Logger, OnModuleInit, UseFilters, UseInterceptors } from '@nestjs/common'
+import { Telegraf } from 'telegraf'
 import { BotContext } from '../interfaces/tg-bot.interfaces'
 import { LanguageTexts, SceneIds } from '../common/app.constants'
 // @ts-expect-error this module has match export
 import { match } from 'telegraf-i18n'
 import { TgBotLoggerInterceptor } from '../interceptors/tg-bot-logger.interceptor'
+import { TelegrafExceptionFilter } from './tg-bot.filter'
+import { InjectModel } from '@nestjs/mongoose'
+import { TgUser, TgUserDocument } from './schemas/tg-user.schema'
+import { Model } from 'mongoose'
 
 @Update()
 @UseInterceptors(TgBotLoggerInterceptor)
-export class TgBotUpdate implements OnModuleInit {
+@UseFilters(TelegrafExceptionFilter)
+export class TgBotUpdate {
   private readonly logger = new Logger(TgBotUpdate.name)
-
-  async onModuleInit() {
-    this.bot.catch((err, ctx) => {
-      if (err instanceof Error) {
-        this.logger.error(`${err.message} \n ${err.stack}`)
-      }
-      ctx.reply(ctx.i18n.t(LanguageTexts.tryLater))
-    })
-  }
 
   constructor(
     private readonly tgBotService: TgBotService,
-    @InjectBot() private readonly bot: Telegraf<BotContext>,
-    @Inject(TELEGRAF_STAGE) private readonly stage: Scenes.Stage<BotContext>
-  ) {
-    stage.register()
-    bot.use(this.stage.middleware())
-  }
+    @InjectModel(TgUser.name) private readonly tgUserModel: Model<TgUserDocument>
+  ) {}
 
   @Start()
   async onStart(@Context() ctx: BotContext) {
-    await ctx.scene.enter(SceneIds.getUserInfo)
+    const { from } = ctx
+    const existingTgUser = await this.tgUserModel.findOne({ tg_user_id: from?.id }).exec()
+    if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
+    else await ctx.reply('Welcome')
   }
 
   @Hears(match(LanguageTexts.startChat))
