@@ -19,7 +19,7 @@ export enum COMMON_ERRORS {
 
 export enum I18nLanguages {
   ru = 'ru',
-  qq = 'qq',
+  en = 'en',
   uz = 'uz'
 }
 
@@ -27,8 +27,8 @@ export enum LanguageTexts {
   chooseLanguage = 'chooseLanguage',
   tryLater = 'tryLater',
   ruLang = 'Русский',
-  uzLang = 'Узбекский',
-  qqLang = 'Каракалпакский',
+  uzLang = "O'zbekcha",
+  enLang = 'English',
   sendPhoneNumber = 'sendPhoneNumber',
   introduceYourself = 'introduceYourself',
   enterFullName = 'enterFullName',
