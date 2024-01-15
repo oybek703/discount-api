@@ -1,13 +1,15 @@
-import { Context, Hears, InjectBot, Start, TELEGRAF_STAGE, Update } from 'nestjs-telegraf'
+import { Context, Hears, InjectBot, Start, TELEGRAF_STAGE, Update, On } from 'nestjs-telegraf'
 import { TgBotService } from './tg-bot.service'
-import { Inject, Logger, OnModuleInit } from '@nestjs/common'
+import { Inject, Logger, OnModuleInit, UseInterceptors } from '@nestjs/common'
 import { Scenes, Telegraf } from 'telegraf'
 import { BotContext } from '../interfaces/tg-bot.interfaces'
 import { LanguageTexts, SceneIds } from '../common/app.constants'
 // @ts-expect-error this module has match export
 import { match } from 'telegraf-i18n'
+import { TgBotLoggerInterceptor } from '../interceptors/tg-bot-logger.interceptor'
 
 @Update()
+@UseInterceptors(TgBotLoggerInterceptor)
 export class TgBotUpdate implements OnModuleInit {
   private readonly logger = new Logger(TgBotUpdate.name)
 
@@ -40,4 +42,7 @@ export class TgBotUpdate implements OnModuleInit {
     const { username: botUsername } = ctx.botInfo
     await ctx.reply(`Hi ${tgId}, ${botUsername}`)
   }
+
+  @On('text')
+  async onOtherText(@Context() ctx: BotContext) {}
 }
