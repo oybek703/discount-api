@@ -1,4 +1,0 @@
-Name,Type,Default value
-id,int,auto
-latitude,string,required
-longitude,string,required
