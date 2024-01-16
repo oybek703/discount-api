@@ -18,13 +18,10 @@ export class TgUser {
   username: string
 
   @Prop({ isRequired: true })
-  tg_user_id: string
+  tgUserId: string
 
   @Prop()
-  phone_number: string
-
-  @Prop({ type: Boolean, default: false })
-  is_deleted: boolean
+  phoneNumber: string
 }
 
 export const TgUserSchema = SchemaFactory.createForClass(TgUser)

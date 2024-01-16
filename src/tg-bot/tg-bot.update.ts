@@ -1,7 +1,6 @@
-import { Context, Hears, InjectBot, On, Start, Update } from 'nestjs-telegraf'
+import { Context, Hears, On, Start, Update } from 'nestjs-telegraf'
 import { TgBotService } from './tg-bot.service'
-import { Logger, OnModuleInit, UseFilters, UseInterceptors } from '@nestjs/common'
-import { Telegraf } from 'telegraf'
+import { Logger, UseFilters, UseInterceptors } from '@nestjs/common'
 import { BotContext } from '../interfaces/tg-bot.interfaces'
 import { LanguageTexts, SceneIds } from '../common/app.constants'
 // @ts-expect-error this module has match export
@@ -26,12 +25,12 @@ export class TgBotUpdate {
   @Start()
   async onStart(@Context() ctx: BotContext) {
     const { from } = ctx
-    const existingTgUser = await this.tgUserModel.findOne({ tg_user_id: from?.id }).exec()
+    const existingTgUser = await this.tgBotService.findTgUserByPhoneOrId(from.id, '')
     if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
     else await ctx.reply('Welcome')
   }
 
-  @Hears(match(LanguageTexts.startChat))
+  @Hears(match(LanguageTexts.addDiscount))
   async onChatStart(@Context() ctx: BotContext) {
     const { id: tgId } = ctx.message.from
     const { username: botUsername } = ctx.botInfo
