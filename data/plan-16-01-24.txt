@@ -1,0 +1,4 @@
+ 1. CRUD for discounts
+ 2. User info wizard
+ 3. Change language wizard
+ 3. Add discount wizard
