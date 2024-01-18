@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module'
 import { JwtModule } from '@nestjs/jwt'
 import { getJwtConfig } from './configs/jwt.config'
 import { DiscountsModule } from './discounts/discounts.module'
+import { TgBotModule } from './tg-bot/tg-bot.module'
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { DiscountsModule } from './discounts/discounts.module'
     DbLoggerModule,
     AuthModule,
     DiscountsModule,
+    TgBotModule
   ]
 })
 export class AppModule {}

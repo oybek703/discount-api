@@ -1,6 +1,5 @@
 import { IsEnum, IsNotEmptyObject, IsOptional, Length } from 'class-validator'
-import { DiscountStatus } from '../../interfaces/discount.interfaces'
-import { Location } from '../schemas/location.schema'
+import { DiscountStatus, ILocation } from '../../interfaces/discount.interfaces'
 
 export class CreateDiscountDto {
   @Length(3, 128)
@@ -17,5 +16,5 @@ export class CreateDiscountDto {
   status: DiscountStatus
 
   @IsNotEmptyObject()
-  location: Location
+  location: ILocation
 }

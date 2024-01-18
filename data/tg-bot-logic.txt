@@ -1,0 +1,11 @@
+STEP - 1. Choose language
+            RU UZ EN
+STEP - 2. Please enter your phone number in ##******* format
+            (Show keyboard button for sending phone number)
+STEP - 3. Good. Now please send the title of discount you want to promote
+
+STEP - 4. Now please send detailed information about discount, like discount dates and percents, prices and so on.
+STEP - 5. Let's continue. Now send pictures about discount. So people can engage better with it.
+STEP - 6. Now last step. Please send location of products where products with discount are sold. So customer can find you easily.
+STEP - 7. Thank you very much. We will publish your advertisement as soon as it passes checks.
+

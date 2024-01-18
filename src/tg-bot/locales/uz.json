@@ -1,0 +1,14 @@
+{
+  "tryLater": "Хатолик юз берди! Илтимос кейинроқ уруниб кўринг.",
+  "chooseLanguage": "Тилни танланг:",
+  "enterFullName": "Тўлиқ исм шарифингизни киритинг (ФИО):",
+  "badUsernameError": "Қўпол сўз топилди.",
+  "sendPhoneNumber": "Илтимос телефон рақамингизни ##******* форматда киритинг:\nМасалан: 991234567",
+  "addDiscount": "Chegirma qo'shish",
+  "pleaseWait": "Илтимос кутинг...",
+  "tooManyRequests": "Жуда ҳам кўп сўров юборилди. Илтимос ${blockLeftTime} минутдан кейин боғланишга уриниб кўринг.",
+  "welcomeUser": "Xush kelibsiz, ${fullName}",
+  "changeLanguage": "Tilni o'zgartirish",
+  "sendNumberBtnText": "Telefon raqamni jo'natish",
+  "goodText": "Yaxshi"
+}
