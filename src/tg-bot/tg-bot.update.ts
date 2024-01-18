@@ -31,11 +31,19 @@ export class TgBotUpdate {
   }
 
   @Hears(match(LanguageTexts.changeLanguage))
-  async onChangeLanguage(@Context() ctx: BotContext) {
+  async hearChangeLanguage(@Context() ctx: BotContext) {
     const { from } = ctx
     const existingTgUser = await this.tgBotService.findTgUserByPhoneOrId(from.id, '')
     if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
     await ctx.scene.enter(SceneIds.changeLanguage)
+  }
+
+  @Hears(match(LanguageTexts.addDiscount))
+  async hearAddDiscount(@Context() ctx: BotContext) {
+    const { from } = ctx
+    const existingTgUser = await this.tgBotService.findTgUserByPhoneOrId(from.id, '')
+    if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
+    await ctx.scene.enter(SceneIds.addDiscount)
   }
 
   @On('text')

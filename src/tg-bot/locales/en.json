@@ -10,5 +10,10 @@
   "welcomeUser": "Welcome, ${fullName} 🙃",
   "changeLanguage": "Change language 📃",
   "sendNumberBtnText": "Send phone number 📱",
-  "goodText": "Good 🙂"
+  "goodText": "Good 🙂",
+  "discountTitle": "Please send brief title about the discount so users can catch something interesting on first view.",
+  "discountDescription": "Good. Now you can send detailed information about the discount. For example the\nproducts that are sold with discount, discount percents, product prices, dates which discounts will end and so on.",
+  "discountPicture": "Good job. And now please send pictures about discount or products so customers can engage better.",
+  "discountLocation": "Well done. Last thing we need is location where these products with\ndiscount are sold. So customer can find you easily.",
+  "discountSaveText": "Thank you very much. We will publish your advertisement as soon as it passes checks."
 }

@@ -38,12 +38,18 @@ export enum LanguageTexts {
   welcomeUser = 'welcomeUser',
   changeLanguage = 'changeLanguage',
   sendNumberBtnText = 'sendNumberBtnText',
-  goodText = 'goodText'
+  goodText = 'goodText',
+  discountTitle = 'discountTitle',
+  discountDescription = 'discountDescription',
+  discountPicture = 'discountPicture',
+  discountLocation = 'discountLocation',
+  discountSaveText = 'discountSaveText'
 }
 
 export enum SceneIds {
   getUserInfo = 'get-user-info',
-  changeLanguage = 'change-language'
+  changeLanguage = 'change-language',
+  addDiscount = 'add-discount'
 }
 
 export const phoneNumberReg = /^\+?\d{6,15}$/

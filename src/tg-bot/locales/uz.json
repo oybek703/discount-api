@@ -10,5 +10,10 @@
   "welcomeUser": "Xush kelibsiz, ${fullName} 🙃",
   "changeLanguage": "Tilni o'zgartirish 📃",
   "sendNumberBtnText": "Telefon raqamni jo'natish 📱",
-  "goodText": "Yaxshi 🙂"
+  "goodText": "Yaxshi 🙂",
+  "discountTitle": "Iltimos, foydalanuvchilar birinchi ko'rishda qiziqarli narsalarni bilib olishlari mumkin bo'lgan qisqacha sarlavha yuboring, chegirma haqida.",
+  "discountDescription": "Yaxshi. Endi siz chegirma haqida batafsil ma'lumot yuborishingiz mumkin. Masalan,\nchegirma bilan sotiladigan mahsulotlar, chegirma foizlari, mahsulot narxi, chegirmalar tugash sanasi va hokazo.",
+  "discountPicture": "Ajoyib. Endi chegirma yoki mahsulotlar haqida suratlarni yuboring, shunda mijozlar yanada faolroq ishtirok etishi mumkin.",
+  "discountLocation": "Yaxshi. Bizga kerak bo'lgan oxirgi narsa - bu chegirmali mahsulotlar sotiladigan joy. Bu orqali, mijoz sizni osongina topishi mumkin.",
+  "discountSaveText": "Katta rahmat. E'loningiz tekshiruvdan o'tishi bilan e'lon qilamiz."
 }

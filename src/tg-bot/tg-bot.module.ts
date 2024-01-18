@@ -10,6 +10,9 @@ import { TelegrafModule } from 'nestjs-telegraf'
 import { ConfigService } from '@nestjs/config'
 import { getTgBotConfig } from '../configs/tg-bot.config'
 import { ChangeLanguageWizard } from './scenes/change-language.wizard'
+import { AddDiscountWizard } from './scenes/add-discount.wizard'
+import { DiscountsService } from '../discounts/discounts.service'
+import { DiscountsModule } from '../discounts/discounts.module'
 
 @Module({
   imports: [
@@ -18,7 +21,8 @@ import { ChangeLanguageWizard } from './scenes/change-language.wizard'
       inject: [ConfigService, RedisService, TgBotI18nService],
       useFactory: getTgBotConfig
     }),
-    MongooseModule.forFeature([{ name: TgUser.name, schema: TgUserSchema }])
+    MongooseModule.forFeature([{ name: TgUser.name, schema: TgUserSchema }]),
+    DiscountsModule
   ],
   providers: [
     TgBotUpdate,
@@ -27,7 +31,8 @@ import { ChangeLanguageWizard } from './scenes/change-language.wizard'
     RedisService,
     UserInfoWizard,
     TgBotI18nService,
-    ChangeLanguageWizard
+    ChangeLanguageWizard,
+    AddDiscountWizard
   ],
   exports: [RedisService, TgBotI18nService]
 })

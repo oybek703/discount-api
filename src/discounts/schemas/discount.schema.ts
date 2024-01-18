@@ -13,8 +13,8 @@ export class Discount {
   @Prop({ isRequired: true })
   description: string
 
-  @Prop({ isRequired: true })
-  image: string
+  @Prop({ isRequired: true, type: [String] })
+  images: string[]
 
   @Prop({
     isRequired: true,

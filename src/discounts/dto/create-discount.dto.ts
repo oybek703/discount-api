@@ -9,7 +9,7 @@ export class CreateDiscountDto {
   description: string
 
   @IsOptional()
-  image: string
+  images: string[]
 
   @IsEnum(DiscountStatus)
   @IsOptional()

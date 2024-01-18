@@ -1,8 +1,9 @@
 import { Scenes, Context } from 'telegraf'
 import { I18n } from 'telegraf-i18n'
+import { CreateDiscountDto } from '../discounts/dto/create-discount.dto'
 
 export interface BotWizardSession extends Scenes.WizardSessionData {
-  myWizardSessionProp: boolean
+  discount: CreateDiscountDto
 }
 
 export interface BotSession extends Scenes.WizardSession<BotWizardSession> {

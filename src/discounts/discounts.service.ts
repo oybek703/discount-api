@@ -10,12 +10,12 @@ export class DiscountsService {
     @InjectModel(Discount.name) private readonly discountModel: Model<DiscountDocument>
   ) {}
 
-  async upsertSchema(body: CreateDiscountDto) {
+  async upsertDiscount(body: CreateDiscountDto) {
     const discount = new this.discountModel()
     discount.title = body.title
     discount.description = body.description
     discount.status = body.status
-    discount.image = body.image
+    discount.images = body.images
     await discount.save()
     return discount
   }
