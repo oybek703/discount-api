@@ -1,0 +1,9 @@
+Name,Type,Default value
+id,string,auto
+tgId,number,
+isBot,boolean,
+username,string,
+firstName,string,
+messageId,string,auto
+chatId,string,auto
+text,string,auto

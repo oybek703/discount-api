@@ -1,4 +1,4 @@
-import { Context, Wizard, WizardStep, Message } from 'nestjs-telegraf'
+import { Context, Wizard, WizardStep, Message, On } from 'nestjs-telegraf'
 import {
   foulWordsRegex,
   I18nLanguages,
@@ -54,8 +54,12 @@ export class UserInfoWizard {
 
   // STEP - 3 Get phone number
   @WizardStep(3)
+  @On('contact')
   @UseInterceptors(TgBotLoggerInterceptor)
   async step3(@Context() ctx: BotContext, @Message('text') msg: string) {
+    // @ts-ignore
+    if (!msg) msg = ctx.message?.contact?.phone_number
+
     if (!phoneNumberReg.test(msg)) {
       await ctx.reply(ctx.i18n.t(LanguageTexts.sendPhoneNumber))
       return

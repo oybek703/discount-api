@@ -1,6 +1,15 @@
-import { Message, User as TgUser } from 'telegraf/typings/core/types/typegram'
-
 export class TgBotLogDto {
-  from: TgUser
-  message: Message
+  tgId: string
+
+  isBot: boolean
+
+  username: string
+
+  firstName: string
+
+  messageId: string
+
+  chatId: string
+
+  text: string
 }

@@ -1,4 +1,5 @@
  1. CRUD for discounts
  2. User info wizard
- 3. Change language wizard
- 3. Add discount wizard
+ 3. Update tg_log schema
+ 4. Change language wizard
+ 5. Add discount wizard
