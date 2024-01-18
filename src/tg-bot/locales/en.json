@@ -4,11 +4,11 @@
   "enterFullName": "Enter your full name:",
   "badUsernameError": "Uncensored word detected.",
   "sendPhoneNumber": "Please enter your phone number in the format ##*******:\nFor example: 991234567",
-  "addDiscount": "Add Discount",
+  "addDiscount": "Add Discount 🏷",
   "pleaseWait": "Please wait...",
   "tooManyRequests": "Too many requests have been made. Please try to connect after ${blockLeftTime} minutes.",
-  "welcomeUser": "Welcome, ${fullName}",
-  "changeLanguage": "Change language",
-  "sendNumberBtnText": "Send phone number",
-  "goodText": "Good"
+  "welcomeUser": "Welcome, ${fullName} 🙃",
+  "changeLanguage": "Change language 📃",
+  "sendNumberBtnText": "Send phone number 📱",
+  "goodText": "Good 🙂"
 }
