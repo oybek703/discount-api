@@ -9,6 +9,7 @@ import { TgUser, TgUserSchema } from './schemas/tg-user.schema'
 import { TelegrafModule } from 'nestjs-telegraf'
 import { ConfigService } from '@nestjs/config'
 import { getTgBotConfig } from '../configs/tg-bot.config'
+import { ChangeLanguageWizard } from './scenes/change-language.wizard'
 
 @Module({
   imports: [
@@ -19,7 +20,15 @@ import { getTgBotConfig } from '../configs/tg-bot.config'
     }),
     MongooseModule.forFeature([{ name: TgUser.name, schema: TgUserSchema }])
   ],
-  providers: [TgBotUpdate, TgBotService, Logger, RedisService, UserInfoWizard, TgBotI18nService],
+  providers: [
+    TgBotUpdate,
+    TgBotService,
+    Logger,
+    RedisService,
+    UserInfoWizard,
+    TgBotI18nService,
+    ChangeLanguageWizard
+  ],
   exports: [RedisService, TgBotI18nService]
 })
 export class TgBotModule {}

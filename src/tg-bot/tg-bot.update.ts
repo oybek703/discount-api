@@ -30,11 +30,12 @@ export class TgBotUpdate {
     else await ctx.reply('Welcome')
   }
 
-  @Hears(match(LanguageTexts.addDiscount))
-  async onChatStart(@Context() ctx: BotContext) {
-    const { id: tgId } = ctx.message.from
-    const { username: botUsername } = ctx.botInfo
-    await ctx.reply(`Hi ${tgId}, ${botUsername}`)
+  @Hears(match(LanguageTexts.changeLanguage))
+  async onChangeLanguage(@Context() ctx: BotContext) {
+    const { from } = ctx
+    const existingTgUser = await this.tgBotService.findTgUserByPhoneOrId(from.id, '')
+    if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
+    await ctx.scene.enter(SceneIds.changeLanguage)
   }
 
   @On('text')

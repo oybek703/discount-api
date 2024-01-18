@@ -9,5 +9,6 @@
   "tooManyRequests": "Жуда ҳам кўп сўров юборилди. Илтимос ${blockLeftTime} минутдан кейин боғланишга уриниб кўринг.",
   "welcomeUser": "Xush kelibsiz, ${fullName}",
   "changeLanguage": "Tilni o'zgartirish",
-  "sendNumberBtnText": "Telefon raqamni jo'natish"
+  "sendNumberBtnText": "Telefon raqamni jo'natish",
+  "goodText": "Yaxshi"
 }

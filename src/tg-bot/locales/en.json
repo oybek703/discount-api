@@ -9,5 +9,6 @@
   "tooManyRequests": "Too many requests have been made. Please try to connect after ${blockLeftTime} minutes.",
   "welcomeUser": "Welcome, ${fullName}",
   "changeLanguage": "Change language",
-  "sendNumberBtnText": "Send phone number"
+  "sendNumberBtnText": "Send phone number",
+  "goodText": "Good"
 }

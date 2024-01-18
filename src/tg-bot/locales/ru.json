@@ -9,5 +9,6 @@
   "tooManyRequests": "Было сделано слишком много запросов. Пожалуйста, попробуйте подключиться через ${blockLeftTime} минут.",
   "welcomeUser": "Добро пожаловать, ${fullName}",
   "changeLanguage": "Изменить язык",
-  "sendNumberBtnText": "Отправить номер телефона"
+  "sendNumberBtnText": "Отправить номер телефона",
+  "goodText": "Хорошо"
 }
