@@ -54,7 +54,7 @@ export class UserInfoWizard {
 
   // STEP - 3 Get phone number
   @WizardStep(3)
-  @On('contact')
+  @On(['contact', 'text'])
   @UseInterceptors(TgBotLoggerInterceptor)
   async step3(@Context() ctx: BotContext, @Message('text') msg: string) {
     // @ts-ignore
