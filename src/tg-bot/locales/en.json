@@ -2,7 +2,7 @@
   "tryLater": "An error has occurred! Please try again later.",
   "chooseLanguage": "Choose language:",
   "enterFullName": "Enter your full name:",
-  "badUsernameError": "Uncensored word detected.",
+  "badUsernameError": "Bad word detected.",
   "sendPhoneNumber": "Please enter your phone number in the format ##*******:\nFor example: 991234567",
   "addDiscount": "Add Discount 🏷",
   "pleaseWait": "Please wait...",
