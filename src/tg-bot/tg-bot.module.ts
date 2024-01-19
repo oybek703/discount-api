@@ -11,7 +11,6 @@ import { ConfigService } from '@nestjs/config'
 import { getTgBotConfig } from '../configs/tg-bot.config'
 import { ChangeLanguageWizard } from './scenes/change-language.wizard'
 import { AddDiscountWizard } from './scenes/add-discount.wizard'
-import { DiscountsService } from '../discounts/discounts.service'
 import { DiscountsModule } from '../discounts/discounts.module'
 
 @Module({

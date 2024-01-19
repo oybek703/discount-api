@@ -4,7 +4,8 @@ export enum EnvVariablesKeys {
   dbName = 'DB_NAME',
   dbURI = 'DB_URI',
   tgBotToken = 'TG_BOT_TOKEN',
-  redisUrl = 'REDIS_URL'
+  redisUrl = 'REDIS_URL',
+  mediaHost = 'MEDIA_HOST'
 }
 
 export enum DbLogType {
