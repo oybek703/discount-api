@@ -1,28 +1,17 @@
 import { CallHandler, ExecutionContext, Inject, Injectable, NestInterceptor } from '@nestjs/common'
 import { Observable, tap } from 'rxjs'
-import { DbLoggerService } from '../db-logger/db-logger.service'
 import { TelegrafExecutionContext } from 'nestjs-telegraf'
 import { BotContext } from '../interfaces/tg-bot.interfaces'
 import { fromPromise } from 'rxjs/internal/observable/innerFrom'
-import { TgBotLogDto } from '../db-logger/dtos/tg-bot-log.dto'
+import { TgBotService } from '../tg-bot/tg-bot.service'
 
 @Injectable()
 export class TgBotLoggerInterceptor implements NestInterceptor {
-  constructor(@Inject(DbLoggerService) private readonly dbLoggerService: DbLoggerService) {}
+  constructor(@Inject(TgBotService) private readonly tgBotService: TgBotService) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const ctx = TelegrafExecutionContext.create(context)
-    const { message } = ctx.getContext<BotContext>()
-    const tgBotDto: TgBotLogDto = {
-      chatId: String(message.chat.id),
-      isBot: message.from.is_bot,
-      tgId: String(message.from.id),
-      firstName: message.from.first_name,
-      username: message.from.username,
-      messageId: String(message.message_id),
-      // @ts-ignore
-      text: message.text
-    }
-    return next.handle().pipe(tap(fromPromise(this.dbLoggerService.insertTgLogToDb(tgBotDto))))
+    const executionContext = TelegrafExecutionContext.create(context)
+    const ctx = executionContext.getContext<BotContext>()
+    return next.handle().pipe(tap(fromPromise(this.tgBotService.insertTgLogToDb(ctx))))
   }
 }

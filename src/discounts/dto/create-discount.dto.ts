@@ -9,11 +9,14 @@ export class CreateDiscountDto {
   description: string
 
   @IsOptional()
-  image: string
+  images: string[]
 
   @IsEnum(DiscountStatus)
   @IsOptional()
   status: DiscountStatus
+
+  @IsOptional()
+  tgUserId?: string
 
   @IsNotEmptyObject()
   location: ILocation

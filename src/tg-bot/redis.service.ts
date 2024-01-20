@@ -11,7 +11,9 @@ export class RedisService {
   constructor(readonly configService: ConfigService) {
     const redisUrl = configService.get(EnvVariablesKeys.redisUrl)
     if (!redisUrl) {
-      throw new Error('Error while connecting to Redis.')
+      throw new Error(
+        `Error while connecting to Redis: ${EnvVariablesKeys.redisUrl} is not provided`
+      )
     }
     this.redisStore = Redis<unknown>({
       prefix: sessionPrefix,

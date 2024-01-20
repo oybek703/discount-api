@@ -1,0 +1,8 @@
+✅ 1. CRUD for discounts
+✅ 2. User info wizard
+✅ 3. Update tg_log schema
+✅ 4. Change language wizard
+✅ 5. Add discount wizard
+✅ 6. Add icons for all texts
+⏳ 7. Update discount schema(add category get more information)
+⏳ 8. Show discounts in website

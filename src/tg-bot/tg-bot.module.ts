@@ -8,9 +8,18 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { TgUser, TgUserSchema } from './schemas/tg-user.schema'
 import { ChangeLanguageWizard } from './scenes/change-language.wizard'
 import { DiscountsModule } from '../discounts/discounts.module'
+import { AddDiscountWizard } from './scenes/add-discount.wizard'
+import { TelegrafModule } from 'nestjs-telegraf'
+import { ConfigService } from '@nestjs/config'
+import { getTgBotConfig } from '../configs/tg-bot.config'
 
 @Module({
   imports: [
+    TelegrafModule.forRootAsync({
+      imports: [TgBotModule],
+      inject: [ConfigService, RedisService, TgBotI18nService],
+      useFactory: getTgBotConfig
+    }),
     MongooseModule.forFeature([{ name: TgUser.name, schema: TgUserSchema }]),
     DiscountsModule
   ],
@@ -21,7 +30,8 @@ import { DiscountsModule } from '../discounts/discounts.module'
     RedisService,
     UserInfoWizard,
     TgBotI18nService,
-    ChangeLanguageWizard
+    ChangeLanguageWizard,
+    AddDiscountWizard
   ],
   exports: [RedisService, TgBotI18nService]
 })

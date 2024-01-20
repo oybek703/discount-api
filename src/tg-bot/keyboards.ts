@@ -17,3 +17,8 @@ export const sendNumberKeyboard = (ctx: BotContext) =>
   Markup.keyboard([
     { text: ctx.i18n.t(LanguageTexts.sendNumberBtnText), request_contact: true }
   ]).resize()
+
+export const sendLocationKeyboard = (ctx: BotContext) =>
+  Markup.keyboard([
+    { text: ctx.i18n.t(LanguageTexts.sendLocation), request_location: true }
+  ]).resize()

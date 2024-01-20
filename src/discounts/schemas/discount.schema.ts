@@ -13,19 +13,22 @@ export class Discount {
   @Prop({ isRequired: true })
   description: string
 
-  @Prop({ isRequired: true })
-  image: string
+  @Prop({ isRequired: true, type: [String] })
+  images: string[]
 
   @Prop({
     isRequired: true,
     type: String,
-    enum: [DiscountStatus.OPEN, DiscountStatus.CLOSED],
+    enum: Object.keys(DiscountStatus),
     default: DiscountStatus.OPEN
   })
   status: DiscountStatus
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
   user: User
+
+  @Prop({ isRequired: true })
+  tgUserId: string
 
   @Prop({ type: ILocation })
   location: ILocation

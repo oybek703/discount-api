@@ -1,14 +1,20 @@
 {
-  "tryLater": "Хатолик юз берди! Илтимос кейинроқ уруниб кўринг.",
-  "chooseLanguage": "Тилни танланг:",
-  "enterFullName": "Тўлиқ исм шарифингизни киритинг (ФИО):",
-  "badUsernameError": "Қўпол сўз топилди.",
-  "sendPhoneNumber": "Илтимос телефон рақамингизни ##******* форматда киритинг:\nМасалан: 991234567",
+  "tryLater": "Xatolik yuz berdi! Iltimos keyinroq urinib ko'ring.",
+  "chooseLanguage": "Tilni tanlang:",
+  "enterFullName": "To'liq ism sharifingizni kiriting (FIO):",
+  "badUsernameError": "⛔ Qo'pol so'z topildi.",
+  "sendPhoneNumber": "Iltimos telefon raqamingizni ##******* formatda kiriting:\nMasalan: 991234567",
   "addDiscount": "Chegirma qo'shish 🏷",
-  "pleaseWait": "Илтимос кутинг...",
-  "tooManyRequests": "Жуда ҳам кўп сўров юборилди. Илтимос ${blockLeftTime} минутдан кейин боғланишга уриниб кўринг.",
+  "pleaseWait": "Iltimos kuting...",
+  "tooManyRequests": "Juda ham ko'p so'rov yuborildi. Iltimos ${blockLeftTime} minutdan keyin urinib ko'ring.",
   "welcomeUser": "Xush kelibsiz, ${fullName} 🙃",
   "changeLanguage": "Tilni o'zgartirish 📃",
   "sendNumberBtnText": "Telefon raqamni jo'natish 📱",
-  "goodText": "Yaxshi 🙂"
+  "goodText": "Yaxshi 🙂",
+  "sendLocation": "Joylashuvni yuborish 🗺",
+  "discountTitle": "Iltimos, foydalanuvchilar birinchi ko'rishda qiziqarli narsalarni bilib olishlari mumkin bo'lgan qisqacha sarlavha 📑 yuboring, chegirma haqida.",
+  "discountDescription": "Yaxshi 😊 \nEndi siz chegirma haqida batafsil ma'lumot 📜 yuborishingiz mumkin. Masalan, chegirma bilan sotiladigan mahsulotlar 🧩, chegirma foizlari, mahsulot narxi, chegirmalar tugash sanasi va hokazo.",
+  "discountPicture": "Ajoyib 👌 \nEndi chegirma yoki mahsulotlar haqida suratlarni 📸 yuboring, shunda mijozlar yanada faolroq ishtirok etishi mumkin.",
+  "discountLocation": "Yaxshi 👍 \nBizga kerak bo'lgan oxirgi narsa - bu chegirmali mahsulotlar sotiladigan joy. Bu orqali, mijoz sizni osongina topishi mumkin.",
+  "discountSaveText": "Katta rahmat 👏 \nE'loningiz tekshiruvdan o'tishi bilan e'lon qilamiz."
 }

@@ -11,11 +11,11 @@ export class DiscountsController {
 
   @Post()
   async createDiscount(@Body() body: CreateDiscountDto) {
-    return this.discountService.upsertSchema(body)
+    return this.discountService.upsertDiscount(body)
   }
 
   @Put()
   async updateDiscount(@Body() body: CreateDiscountDto) {
-    return this.discountService.upsertSchema(body)
+    return this.discountService.upsertDiscount(body)
   }
 }
