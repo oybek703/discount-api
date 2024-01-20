@@ -2,9 +2,12 @@ export enum EnvVariablesKeys {
   port = 'PORT',
   jwtSecret = 'JWT_SECRET',
   dbName = 'DB_NAME',
+  dbUser = 'DB_USER',
+  dbUserPassword = 'DB_USER_PASSWORD',
   dbURI = 'DB_URI',
   tgBotToken = 'TG_BOT_TOKEN',
-  redisUrl = 'REDIS_URL'
+  redisUrl = 'REDIS_URL',
+  mediaHost = 'MEDIA_HOST'
 }
 
 export enum DbLogType {
@@ -38,12 +41,19 @@ export enum LanguageTexts {
   welcomeUser = 'welcomeUser',
   changeLanguage = 'changeLanguage',
   sendNumberBtnText = 'sendNumberBtnText',
-  goodText = 'goodText'
+  goodText = 'goodText',
+  sendLocation = 'sendLocation',
+  discountTitle = 'discountTitle',
+  discountDescription = 'discountDescription',
+  discountPicture = 'discountPicture',
+  discountLocation = 'discountLocation',
+  discountSaveText = 'discountSaveText'
 }
 
 export enum SceneIds {
   getUserInfo = 'get-user-info',
-  changeLanguage = 'change-language'
+  changeLanguage = 'change-language',
+  addDiscount = 'add-discount'
 }
 
 export const phoneNumberReg = /^\+?\d{6,15}$/

@@ -10,6 +10,7 @@ import { TelegrafExceptionFilter } from './tg-bot.filter'
 import { InjectModel } from '@nestjs/mongoose'
 import { TgUser, TgUserDocument } from './schemas/tg-user.schema'
 import { Model } from 'mongoose'
+import { mainMenuKeyboard } from './keyboards'
 
 @Update()
 @UseInterceptors(TgBotLoggerInterceptor)
@@ -27,15 +28,23 @@ export class TgBotUpdate {
     const { from } = ctx
     const existingTgUser = await this.tgBotService.findTgUserByPhoneOrId(from.id, '')
     if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
-    else await ctx.reply('Welcome')
+    else await ctx.reply('Welcome', mainMenuKeyboard(ctx))
   }
 
   @Hears(match(LanguageTexts.changeLanguage))
-  async onChangeLanguage(@Context() ctx: BotContext) {
+  async hearChangeLanguage(@Context() ctx: BotContext) {
     const { from } = ctx
     const existingTgUser = await this.tgBotService.findTgUserByPhoneOrId(from.id, '')
     if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
     await ctx.scene.enter(SceneIds.changeLanguage)
+  }
+
+  @Hears(match(LanguageTexts.addDiscount))
+  async hearAddDiscount(@Context() ctx: BotContext) {
+    const { from } = ctx
+    const existingTgUser = await this.tgBotService.findTgUserByPhoneOrId(from.id, '')
+    if (!existingTgUser) return await ctx.scene.enter(SceneIds.getUserInfo)
+    await ctx.scene.enter(SceneIds.addDiscount)
   }
 
   @On('text')

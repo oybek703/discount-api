@@ -43,7 +43,7 @@ export class DbLoggerService {
       await newTgBotLog.save()
       return true
     } catch (e: unknown) {
-      this.logger.error(`Error while writing tg-log log to db: ${e.toString()}`)
+      this.logger.error(`Error while writing tg-log to db: ${e.toString()}`)
       return false
     }
   }
