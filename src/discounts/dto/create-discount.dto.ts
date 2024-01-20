@@ -15,6 +15,9 @@ export class CreateDiscountDto {
   @IsOptional()
   status: DiscountStatus
 
+  @IsOptional()
+  tgUserId?: string
+
   @IsNotEmptyObject()
   location: ILocation
 }

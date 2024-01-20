@@ -1,6 +1,6 @@
-import { Context, Hears, On, Start, TELEGRAF_STAGE, Update } from 'nestjs-telegraf'
+import { Context, Hears, On, Start, Update } from 'nestjs-telegraf'
 import { TgBotService } from './tg-bot.service'
-import { Inject, Logger, UseFilters, UseInterceptors } from '@nestjs/common'
+import { Logger, UseFilters, UseInterceptors } from '@nestjs/common'
 import { BotContext } from '../interfaces/tg-bot.interfaces'
 import { LanguageTexts, SceneIds } from '../common/app.constants'
 // @ts-expect-error this module has match export
@@ -11,7 +11,6 @@ import { InjectModel } from '@nestjs/mongoose'
 import { TgUser, TgUserDocument } from './schemas/tg-user.schema'
 import { Model } from 'mongoose'
 import { mainMenuKeyboard } from './keyboards'
-import { Scenes } from 'telegraf'
 
 @Update()
 @UseInterceptors(TgBotLoggerInterceptor)
@@ -21,8 +20,7 @@ export class TgBotUpdate {
 
   constructor(
     private readonly tgBotService: TgBotService,
-    @InjectModel(TgUser.name) private readonly tgUserModel: Model<TgUserDocument>,
-    @Inject(TELEGRAF_STAGE) private readonly stage: Scenes.Stage<BotContext>
+    @InjectModel(TgUser.name) private readonly tgUserModel: Model<TgUserDocument>
   ) {}
 
   @Start()

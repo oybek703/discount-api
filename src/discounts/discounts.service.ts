@@ -16,6 +16,8 @@ export class DiscountsService {
     discount.description = body.description
     discount.status = body.status
     discount.images = body.images
+    discount.location = body.location
+    discount.tgUserId = body.tgUserId
     await discount.save()
     return discount
   }
