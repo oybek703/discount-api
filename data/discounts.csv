@@ -6,3 +6,4 @@ image,string,null
 location,Location,required
 status,active | inactive,required
 user,User,required
+tgUserId,string,null
