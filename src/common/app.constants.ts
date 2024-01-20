@@ -29,9 +29,9 @@ export enum I18nLanguages {
 export enum LanguageTexts {
   chooseLanguage = 'chooseLanguage',
   tryLater = 'tryLater',
-  ruLang = 'Русский',
-  uzLang = "O'zbekcha",
-  enLang = 'English',
+  ruLang = 'Русский 🇷🇺',
+  uzLang = "O'zbekcha 🇺🇿",
+  enLang = 'English 🇺🇸',
   sendPhoneNumber = 'sendPhoneNumber',
   enterFullName = 'enterFullName',
   badUsernameError = 'badUsernameError',
