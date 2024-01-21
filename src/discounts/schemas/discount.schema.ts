@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import mongoose, { HydratedDocument } from 'mongoose'
 import { User } from '../../users/schemas/user.schema'
 import { DiscountStatus, ILocation } from '../../interfaces/discount.interfaces'
+import { Category } from './category.schema'
 
 export type DiscountDocument = HydratedDocument<Discount>
 
@@ -26,6 +27,9 @@ export class Discount {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
   user: User
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Category.name })
+  category: Category
 
   @Prop({ isRequired: true })
   tgUserId: string
