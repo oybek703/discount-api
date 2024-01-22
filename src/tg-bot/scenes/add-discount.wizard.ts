@@ -8,6 +8,9 @@ import { message } from 'telegraf/filters'
 import { mainMenuKeyboard, sendLocationKeyboard } from '../keyboards'
 import { DiscountsService } from '../../discounts/discounts.service'
 import { DiscountStatus } from '../../interfaces/discount.interfaces'
+import { InjectModel } from '@nestjs/mongoose'
+import { Category, CategoryDocument } from '../../discounts/schemas/category.schema'
+import { Model } from 'mongoose'
 
 @Injectable()
 export class AddDiscountWizard {
@@ -19,10 +22,18 @@ export class AddDiscountWizard {
     @InjectBot() bot: Telegraf<BotContext>,
     @Inject(TELEGRAF_STAGE) private readonly stage: Scenes.Stage<BotContext>,
     private readonly tgBotService: TgBotService,
-    private readonly discountsService: DiscountsService
+    private readonly discountsService: DiscountsService,
+    @InjectModel(Category.name) private readonly categoryModel: Model<CategoryDocument>
   ) {
     // Create scene and add steps
-    this.steps = [this.step1(), this.step2(), this.step3(), this.step4(), this.step5()]
+    this.steps = [
+      this.step1(),
+      this.step2(),
+      this.step3(),
+      this.step4(),
+      this.step5(),
+      this.step6()
+    ]
     this.scene = new Scenes.WizardScene<BotContext>(SceneIds.addDiscount, ...this.steps)
     // Register add discount wizard
     this.stage.register(this.scene)
@@ -30,8 +41,22 @@ export class AddDiscountWizard {
     bot.catch((err: Error, ctx) => this.tgBotService.catchException(err, ctx, this.logger))
   }
 
-  // STEP - 1 Ask brief title
+  // STEP - 1 Choose category
   step1() {
+    return this.tgBotService.createComposer(composer => {
+      composer.on(message('text'), async ctx => {
+        const categories = await this.categoryModel.find({}).exec()
+        console.log(categories)
+        // await ctx.reply(ctx.i18n.t(LanguageTexts.discountCategory))
+        // if (!ctx.scene.session.discount)
+        //   ctx.scene.session.discount = { ...ctx.scene.session.discount }
+        // return ctx.wizard.next()
+      })
+    })
+  }
+
+  // STEP - 2 Ask brief title
+  step2() {
     return this.tgBotService.createComposer(composer => {
       composer.on(message('text'), async ctx => {
         await ctx.reply(ctx.i18n.t(LanguageTexts.discountTitle))
@@ -42,8 +67,8 @@ export class AddDiscountWizard {
     })
   }
 
-  // STEP - 2 Get title and ask detailed description
-  step2() {
+  // STEP - 3 Get title and ask detailed description
+  step3() {
     return this.tgBotService.createComposer(composer => {
       composer.on(message('text'), async ctx => {
         ctx.scene.session.discount.title = ctx.update?.message.text
@@ -53,8 +78,8 @@ export class AddDiscountWizard {
     })
   }
 
-  // STEP - 3 Get description and ask pictures
-  step3() {
+  // STEP - 4 Get description and ask pictures
+  step4() {
     return this.tgBotService.createComposer(composer => {
       composer.on(message('text'), async ctx => {
         ctx.scene.session.discount.description = ctx.update?.message.text
@@ -64,8 +89,8 @@ export class AddDiscountWizard {
     })
   }
 
-  // STEP - 4 Get pictures and ask location
-  step4() {
+  // STEP - 5 Get pictures and ask location
+  step5() {
     const map = new Map()
     return this.tgBotService.createComposer(composer => {
       composer.use(async (ctx, next) => {
@@ -135,8 +160,8 @@ export class AddDiscountWizard {
     })
   }
 
-  // STEP - 5 Get location, save discount
-  step5() {
+  // STEP - 6 Get location, save discount
+  step6() {
     return this.tgBotService.createComposer(composer => {
       composer.on(message('location'), async ctx => {
         const { longitude, latitude } = ctx.update.message?.location

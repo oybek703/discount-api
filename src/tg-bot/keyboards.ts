@@ -1,6 +1,7 @@
 import { Markup } from 'telegraf'
 import { LanguageTexts } from '../common/app.constants'
 import { BotContext } from '../interfaces/tg-bot.interfaces'
+import { CategoryDocument } from '../discounts/schemas/category.schema'
 
 export const languageKeyboard = Markup.keyboard([
   [LanguageTexts.ruLang, LanguageTexts.uzLang],
