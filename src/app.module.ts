@@ -33,6 +33,11 @@ import { getTgBotConfig } from './configs/tg-bot.config'
       inject: [ConfigService, RedisService, TgBotI18nService],
       useFactory: getTgBotConfig
     }),
+    TelegrafModule.forRootAsync({
+      imports: [TgBotModule],
+      inject: [ConfigService, RedisService, TgBotI18nService],
+      useFactory: getTgBotConfig
+    }),
     TgBotModule
   ]
 })
