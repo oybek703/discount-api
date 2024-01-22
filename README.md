@@ -1,1 +1,1 @@
-## Discount API
+## Discount project API
