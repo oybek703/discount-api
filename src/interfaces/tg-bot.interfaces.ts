@@ -5,6 +5,7 @@ import { Message } from 'telegraf/typings/core/types/typegram'
 
 export interface BotWizardSession extends Scenes.WizardSessionData {
   discount: CreateDiscountDto
+  categoriesMessageId: number
 }
 
 export interface BotSession extends Scenes.WizardSession<BotWizardSession> {

@@ -12,9 +12,21 @@
   "sendNumberBtnText": "Send phone number 📱",
   "goodText": "Good 🙂",
   "sendLocation": "Send location 🗺",
+  "discountCategory": "Let's start by choosing category:",
   "discountTitle": "Please send brief title 📑 about the discount so users can catch something interesting on first view. 🙃",
   "discountDescription": "Good 😊 \nNow you can send detailed information 📜 about the discount. For example the products 🧩 that are sold with discount, discount percents, product prices, dates which discounts will end and so on.",
   "discountPicture": "Good job 👌 \nAnd now please send pictures 📸 about discount or products so customers can engage better.",
   "discountLocation": "Well done 👍 \nLast thing we need is location 🗺 where these products with\ndiscount are sold. So customer can find you easily.",
-  "discountSaveText": "Thank you very much 👏 \nWe will publish your advertisement as soon as it passes checks."
+  "discountSaveText": "Thank you very much 👏 \nWe will publish your advertisement as soon as it passes checks.",
+  "categories": {
+    "electronics" : "Electronics",
+    "clothes" : "Clothes",
+    "shoes" : "Shoes",
+    "accessories" : "Accessories",
+    "beauty" : "Beauty and care",
+    "health" :"Health",
+    "canselary" : "Stationery",
+    "books" :"Books",
+    "children" : "Children's products"
+  }
 }

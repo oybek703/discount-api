@@ -1,6 +1,7 @@
 import { Markup } from 'telegraf'
 import { LanguageTexts } from '../common/app.constants'
 import { BotContext } from '../interfaces/tg-bot.interfaces'
+import { CategoryDocument } from '../discounts/schemas/category.schema'
 
 export const languageKeyboard = Markup.keyboard([
   [LanguageTexts.ruLang, LanguageTexts.uzLang],
@@ -22,3 +23,10 @@ export const sendLocationKeyboard = (ctx: BotContext) =>
   Markup.keyboard([
     { text: ctx.i18n.t(LanguageTexts.sendLocation), request_location: true }
   ]).resize()
+
+export const categoriesKeyboard = (ctx: BotContext, categories: CategoryDocument[]) =>
+  Markup.inlineKeyboard(
+    categories.map(({ slug, title }) => [
+      Markup.button.callback(ctx.i18n.t(`categories.${slug}`), slug)
+    ])
+  )

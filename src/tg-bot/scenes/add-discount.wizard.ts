@@ -5,9 +5,12 @@ import { Inject, Injectable, Logger } from '@nestjs/common'
 import { Composer, Scenes, Telegraf } from 'telegraf'
 import { TgBotService } from '../tg-bot.service'
 import { message } from 'telegraf/filters'
-import { mainMenuKeyboard, sendLocationKeyboard } from '../keyboards'
+import { categoriesKeyboard, mainMenuKeyboard, sendLocationKeyboard } from '../keyboards'
 import { DiscountsService } from '../../discounts/discounts.service'
 import { DiscountStatus } from '../../interfaces/discount.interfaces'
+import { InjectModel } from '@nestjs/mongoose'
+import { Category, CategoryDocument } from '../../discounts/schemas/category.schema'
+import { Model } from 'mongoose'
 
 @Injectable()
 export class AddDiscountWizard {
@@ -19,10 +22,18 @@ export class AddDiscountWizard {
     @InjectBot() bot: Telegraf<BotContext>,
     @Inject(TELEGRAF_STAGE) private readonly stage: Scenes.Stage<BotContext>,
     private readonly tgBotService: TgBotService,
-    private readonly discountsService: DiscountsService
+    private readonly discountsService: DiscountsService,
+    @InjectModel(Category.name) private readonly categoryModel: Model<CategoryDocument>
   ) {
     // Create scene and add steps
-    this.steps = [this.step1(), this.step2(), this.step3(), this.step4(), this.step5()]
+    this.steps = [
+      this.step1(),
+      this.step2(),
+      this.step3(),
+      this.step4(),
+      this.step5(),
+      this.step6()
+    ]
     this.scene = new Scenes.WizardScene<BotContext>(SceneIds.addDiscount, ...this.steps)
     // Register add discount wizard
     this.stage.register(this.scene)
@@ -30,20 +41,41 @@ export class AddDiscountWizard {
     bot.catch((err: Error, ctx) => this.tgBotService.catchException(err, ctx, this.logger))
   }
 
-  // STEP - 1 Ask brief title
+  // STEP - 1 Choose category
   step1() {
-    return this.tgBotService.createComposer(composer => {
+    return this.tgBotService.createComposer(async composer => {
       composer.on(message('text'), async ctx => {
-        await ctx.reply(ctx.i18n.t(LanguageTexts.discountTitle))
+        const categories = await this.categoryModel.find({}).exec()
         if (!ctx.scene.session.discount)
           ctx.scene.session.discount = { ...ctx.scene.session.discount }
-        return ctx.wizard.next()
+        const { message_id: categoriesMessageId } = await ctx.reply(
+          ctx.i18n.t(LanguageTexts.discountCategory),
+          categoriesKeyboard(ctx, categories)
+        )
+        ctx.scene.session.categoriesMessageId = categoriesMessageId
+        ctx.wizard.next()
       })
     })
   }
 
-  // STEP - 2 Get title and ask detailed description
+  // STEP - 2 Get category and ask title
   step2() {
+    return this.tgBotService.createComposer(composer => {
+      composer.on('callback_query', async ctx => {
+        // @ts-ignore
+        const callbackQueryData = ctx.callbackQuery?.data
+        const categoriesMessageId = ctx.scene.session.categoriesMessageId
+        const category = await this.categoryModel.findOne({ slug: callbackQueryData })
+        ctx.scene.session.discount.category = category.id
+        if (categoriesMessageId) await ctx.deleteMessage(categoriesMessageId)
+        await ctx.reply(ctx.i18n.t(LanguageTexts.discountTitle))
+        ctx.wizard.next()
+      })
+    })
+  }
+
+  // STEP - 3 Get title and ask detailed description
+  step3() {
     return this.tgBotService.createComposer(composer => {
       composer.on(message('text'), async ctx => {
         ctx.scene.session.discount.title = ctx.update?.message.text
@@ -53,8 +85,8 @@ export class AddDiscountWizard {
     })
   }
 
-  // STEP - 3 Get description and ask pictures
-  step3() {
+  // STEP - 4 Get description and ask pictures
+  step4() {
     return this.tgBotService.createComposer(composer => {
       composer.on(message('text'), async ctx => {
         ctx.scene.session.discount.description = ctx.update?.message.text
@@ -64,8 +96,8 @@ export class AddDiscountWizard {
     })
   }
 
-  // STEP - 4 Get pictures and ask location
-  step4() {
+  // STEP - 5 Get pictures and ask location
+  step5() {
     const map = new Map()
     return this.tgBotService.createComposer(composer => {
       composer.use(async (ctx, next) => {
@@ -127,16 +159,18 @@ export class AddDiscountWizard {
         const file_id =
           //@ts-ignore
           'photo' in ctx.message ? ctx.message.photo.pop().file_id : ctx.message.document.file_id
+        const { message_id } = await ctx.reply(ctx.i18n.t(LanguageTexts.pleaseWait))
         const fileLink = await this.tgBotService.saveFileAndGetLink(ctx, file_id)
         ctx.scene.session.discount.images = [fileLink]
+        await ctx.deleteMessage(message_id)
         await ctx.reply(ctx.i18n.t(LanguageTexts.discountLocation), sendLocationKeyboard(ctx))
         ctx.wizard.next()
       })
     })
   }
 
-  // STEP - 5 Get location, save discount
-  step5() {
+  // STEP - 6 Get location, save discount
+  step6() {
     return this.tgBotService.createComposer(composer => {
       composer.on(message('location'), async ctx => {
         const { longitude, latitude } = ctx.update.message?.location
