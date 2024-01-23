@@ -17,7 +17,8 @@ export enum DbLogType {
 
 export enum COMMON_ERRORS {
   userNameExists = 'Username already exists.',
-  userDoesNotExist = 'User does not exist.'
+  userDoesNotExist = 'User does not exist.',
+  invalidCategory = 'Category does not exists.'
 }
 
 export enum I18nLanguages {
@@ -43,6 +44,7 @@ export enum LanguageTexts {
   sendNumberBtnText = 'sendNumberBtnText',
   goodText = 'goodText',
   sendLocation = 'sendLocation',
+  discountCategory = 'discountCategory',
   discountTitle = 'discountTitle',
   discountDescription = 'discountDescription',
   discountPicture = 'discountPicture',

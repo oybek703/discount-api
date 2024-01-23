@@ -9,10 +9,14 @@ import { TgUser, TgUserSchema } from './schemas/tg-user.schema'
 import { ChangeLanguageWizard } from './scenes/change-language.wizard'
 import { DiscountsModule } from '../discounts/discounts.module'
 import { AddDiscountWizard } from './scenes/add-discount.wizard'
+import { Category, CategorySchema } from '../discounts/schemas/category.schema'
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: TgUser.name, schema: TgUserSchema }]),
+    MongooseModule.forFeature([
+      { name: TgUser.name, schema: TgUserSchema },
+      { name: Category.name, schema: CategorySchema }
+    ]),
     DiscountsModule
   ],
   providers: [

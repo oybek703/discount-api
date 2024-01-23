@@ -57,17 +57,19 @@ export class TgBotService {
   }
 
   async insertTgLogToDb({ message }: BotContext) {
-    const tgBotLogDto: TgBotLogDto = {
-      chatId: String(message.chat.id),
-      isBot: message.from.is_bot,
-      tgId: String(message.from.id),
-      firstName: message.from.first_name,
-      username: message.from.username,
-      messageId: String(message.message_id),
-      // @ts-ignore
-      text: message.text
+    if (message) {
+      const tgBotLogDto: TgBotLogDto = {
+        chatId: String(message.chat.id),
+        isBot: message.from.is_bot,
+        tgId: String(message.from.id),
+        firstName: message.from.first_name,
+        username: message.from.username,
+        messageId: String(message.message_id),
+        // @ts-ignore
+        text: message.text
+      }
+      await this.dbLoggerService.insertTgLogToDb(tgBotLogDto)
     }
-    await this.dbLoggerService.insertTgLogToDb(tgBotLogDto)
   }
 
   async saveFileAndGetLink(ctx: BotContext, fileId: string) {

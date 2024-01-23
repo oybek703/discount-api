@@ -8,6 +8,9 @@ export class CreateDiscountDto {
   @Length(3, 256)
   description: string
 
+  @Length(3, 256)
+  category: string
+
   @IsOptional()
   images: string[]
 

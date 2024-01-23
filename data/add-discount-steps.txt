@@ -1,14 +1,16 @@
-STEP - 1. Please send brief title about the discount so users can
+STEP - 1 Let's start by choosing category:
+
+STEP - 2. Please send brief title about the discount so users can
 catch something interesting on first view.
 
-STEP - 2. Good. Now you can send detailed information about the discount. For example the
+STEP - 3. Good. Now you can send detailed information about the discount. For example the
 products that are sold with discount, discount percents, product prices, dates
 which discounts will end and so on.
 
-STEP - 3. Good job. And now please send pictures about discount or
+STEP - 4. Good job. And now please send pictures about discount or
 products so customers can engage better.
 
-STEP - 4. Well done. Last thing we need is location
+STEP - 5. Well done. Last thing we need is location
 where these products with discount are sold. So customer can find you easily.
 
-STEP - 5. Thank you very much. We will publish your advertisement as soon as it passes checks.
+STEP - 6. Thank you very much. We will publish your advertisement as soon as it passes checks.
