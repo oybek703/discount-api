@@ -23,3 +23,10 @@ export const sendLocationKeyboard = (ctx: BotContext) =>
   Markup.keyboard([
     { text: ctx.i18n.t(LanguageTexts.sendLocation), request_location: true }
   ]).resize()
+
+export const categoriesKeyboard = (ctx: BotContext, categories: CategoryDocument[]) =>
+  Markup.inlineKeyboard(
+    categories.map(({ slug, title }) => [
+      Markup.button.callback(ctx.i18n.t(`categories.${slug}`), slug)
+    ])
+  )

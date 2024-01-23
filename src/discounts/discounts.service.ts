@@ -14,7 +14,7 @@ export class DiscountsService {
   ) {}
 
   async upsertDiscount(body: CreateDiscountDto) {
-    const discountCategory = await this.categoryModel.findOne({ slug: body.category }).exec()
+    const discountCategory = await this.categoryModel.findById(body.category).exec()
     if (!discountCategory) throw new BadGatewayException(COMMON_ERRORS.invalidCategory)
     const discount = new this.discountModel()
     discount.title = body.title

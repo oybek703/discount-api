@@ -17,5 +17,16 @@
   "discountDescription": "Yaxshi 😊 \nEndi siz chegirma haqida batafsil ma'lumot 📜 yuborishingiz mumkin. Masalan, chegirma bilan sotiladigan mahsulotlar 🧩, chegirma foizlari, mahsulot narxi, chegirmalar tugash sanasi va hokazo.",
   "discountPicture": "Ajoyib 👌 \nEndi chegirma yoki mahsulotlar haqida suratlarni 📸 yuboring, shunda mijozlar yanada faolroq ishtirok etishi mumkin.",
   "discountLocation": "Yaxshi 👍 \nBizga kerak bo'lgan oxirgi narsa - bu chegirmali mahsulotlar sotiladigan joy. Bu orqali, mijoz sizni osongina topishi mumkin.",
-  "discountSaveText": "Katta rahmat 👏 \nE'loningiz tekshiruvdan o'tishi bilan e'lon qilamiz."
+  "discountSaveText": "Katta rahmat 👏 \nE'loningiz tekshiruvdan o'tishi bilan e'lon qilamiz.",
+  "categories": {
+    "electronics" : "Elektronika",
+    "clothes" : "Kiyim",
+    "shoes" : "Poyafzal",
+    "accessories" : "Aksessuarlar",
+    "beauty'zallik" : "Go'zallik va parvarish",
+    "health": "Salomatlik",
+    "canselary" : "Kanselariya",
+    "books" :"Kitoblar",
+    "children" : "Bolalar mahsulotlari"
+  }
 }
